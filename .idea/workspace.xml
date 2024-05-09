@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="first submission">
-      <change afterPath="$PROJECT_DIR$/src/com/student/base/BaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/dao/StudentDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/model/Course.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/model/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/util/DBUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/view/AdminView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/view/CourseInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/view/LoginView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/view/StudentInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/student/view/StudentView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/AppConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/AppConstants.java" afterDir="false" />
-    </list>
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="add details basically" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +54,7 @@
       <option name="presentableId" value="Default" />
       <updated>1715180015378</updated>
       <workItem from="1715180016530" duration="883000" />
-      <workItem from="1715218213602" duration="1045000" />
+      <workItem from="1715218213602" duration="1531000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -78,7 +64,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715180844801</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add details basically">
+      <option name="closed" value="true" />
+      <created>1715219734847</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715219734847</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,6 +80,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first submission" />
-    <option name="LAST_COMMIT_MESSAGE" value="first submission" />
+    <MESSAGE value="add details basically" />
+    <option name="LAST_COMMIT_MESSAGE" value="add details basically" />
   </component>
 </project>
