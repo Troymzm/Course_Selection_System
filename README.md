@@ -19,3 +19,30 @@
 
     StudentDAO.java
     学生数据访问类
+### model
+    Course.java
+    课程实体类
+
+    Student.java
+    学生实体类
+### sevice
+    CourseInfoService.java
+    课程信息管理
+
+    StudentInfoService.java
+    学生信息管理
+### util
+    DBUtil.java
+    数据库连接查询工具集
+### view
+    AbminView.java
+    管理员界面
+
+    LoginView.java
+    登录界面
+
+    StudentView.java
+    学生选课界面
+### 
+    AppConstants.java
+    所有用到的常量
