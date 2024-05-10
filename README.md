@@ -15,8 +15,7 @@
     所有用到的常量
 
 ### base
-    BaseDAO.java
-    数据访问基类
+    'BaseDAO.java'    数据访问基类
 ### dao
     AdminDAO.java
     管理员数据访问类
