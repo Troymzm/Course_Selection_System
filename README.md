@@ -10,6 +10,10 @@
 
 ## 结构
 
+### 
+    AppConstants.java
+    所有用到的常量
+
 ### base
     BaseDAO.java
     数据访问基类
@@ -43,6 +47,4 @@
 
     StudentView.java
     学生选课界面
-### 
-    AppConstants.java
-    所有用到的常量
+
