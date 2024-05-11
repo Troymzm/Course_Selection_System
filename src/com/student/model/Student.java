@@ -6,31 +6,31 @@ package com.student.model;
  * 学生实体类
  */
 public class Student {
-    private String id;
-    private String name;
+    private String sno;
+    private String sname;
     private String sex;
-    private String dept;
+    private int age;
+    private String sdept;
     private String username;
-    private String password;
 
-    public Student(String id) {
-        this.id = id;
+    public Student(String sno) {
+        this.sno = sno;
     }
 
-    public String getId() {
-        return id;
+    public String getSno() {
+        return sno;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSno(String sno) {
+        this.sno = sno;
     }
 
-    public String getName() {
-        return name;
+    public String getSname() {
+        return sname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 
     public String getSex() {
@@ -41,12 +41,20 @@ public class Student {
         this.sex = sex;
     }
 
-    public String getDept() {
-        return dept;
+    public int getAge() {
+        return age;
     }
 
-    public void setDept(String dept) {
-        this.dept = dept;
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSdept() {
+        return sdept;
+    }
+
+    public void setSdept(String sdept) {
+        this.sdept = sdept;
     }
 
     public String getUsername() {
@@ -55,13 +63,5 @@ public class Student {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
