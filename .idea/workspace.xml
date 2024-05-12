@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="add details basically">
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="完善了数据库部分内容">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/AppConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/AppConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/base/BaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/base/BaseDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/dao/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/dao/StudentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/model/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/util/DBUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/util/DBUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +62,7 @@
       <workItem from="1715218213602" duration="1569000" />
       <workItem from="1715223199470" duration="21000" />
       <workItem from="1715246457502" duration="584000" />
-      <workItem from="1715302631729" duration="13396000" />
+      <workItem from="1715302631729" duration="14073000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -135,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715302687704</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="完善了数据库部分内容">
+      <option name="closed" value="true" />
+      <created>1715442803441</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715442803441</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +145,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first submission" />
     <MESSAGE value="add details basically" />
-    <option name="LAST_COMMIT_MESSAGE" value="add details basically" />
+    <MESSAGE value="完善了数据库部分内容" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善了数据库部分内容" />
   </component>
 </project>
