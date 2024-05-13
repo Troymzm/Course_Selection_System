@@ -32,7 +32,7 @@
 ### util
 `DBUtil.java`    数据库连接查询工具集
 ### view
-`AbminView.java`    管理员界面
+`AdminView.java`    管理员界面
 
 `LoginView.java`    登录界面
 
