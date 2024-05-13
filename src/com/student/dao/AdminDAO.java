@@ -124,7 +124,6 @@ public class AdminDAO extends BaseDAO {
         String sql = "insert into student values(?,?,?,?,?,?,?)";
         param[6] = getSHA256(param[6] + param[5]);
         db.executeUpdate(sql, param);
-
     }
 
     /**
