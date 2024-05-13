@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="完善了数据库部分内容">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Course_Selection_System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Course_Selection_System.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/AppConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/AppConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" afterDir="false" />
-    </list>
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="添加了Test.java用于数据库测试" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +71,7 @@
       <workItem from="1715223199470" duration="21000" />
       <workItem from="1715246457502" duration="584000" />
       <workItem from="1715302631729" duration="14552000" />
-      <workItem from="1715575543903" duration="5053000" />
+      <workItem from="1715575543903" duration="5830000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -168,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715562033346</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="添加了Test.java用于数据库测试">
+      <option name="closed" value="true" />
+      <created>1715590049921</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1715590049921</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,6 +179,7 @@
     <MESSAGE value="first submission" />
     <MESSAGE value="add details basically" />
     <MESSAGE value="完善了数据库部分内容" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善了数据库部分内容" />
+    <MESSAGE value="添加了Test.java用于数据库测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了Test.java用于数据库测试" />
   </component>
 </project>
