@@ -11,6 +11,9 @@
 ## 结构
 
 ### 常量
+`Test.java`    用于测试
+
+### 常量
 `AppConstants.java`    所有用到的常量
 ### base
 `BaseDAO.java`    数据访问基类
