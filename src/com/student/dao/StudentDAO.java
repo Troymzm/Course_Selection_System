@@ -62,52 +62,8 @@ public class StudentDAO extends BaseDAO {
 
     /**
      *
-     * @Description: query the grade of a specific student.
-     */
-    public String[][] queryStuGrade(String sno) {
-        String sql =
-                "select A.cno, cname, grade from course as A, stu_course as B where A.cno = B.cno and sno=? and grade is not null";
-        String[] param = {sno};
-        rs = db.executeQuery(sql, param);
-        return buildResult();
-    }
-
-
-    /**
-     *
-     * @throws CourseNotFoundException
-     * @throws CourseNotSelectedException
-     * @Description: query a student's grade of a course.
-     */
-    public int queryCourseGrade(String sno, String cno)
-            throws CourseNotFoundException, CourseNotSelectedException {
-        String[][] course = queryCourse(cno);
-        if (course.length == 0) {
-            throw new CourseNotFoundException();
-        }
-        String sql = "select grade from stu_course where sno=? and cno=?";
-        String[] param = {sno, cno};
-        rs = db.executeQuery(sql, param);
-        String grade = null;
-        try {
-            if (rs.next()) {
-                grade = rs.getString("grade");
-            } else {
-                throw new CourseNotSelectedException();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            destroy();
-        }
-        return Integer.parseInt(grade);
-    }
-
-    /**
-     *
      * @Description: select course for a student.<br>
      * (sno, cno) should be checked additionally!
-     * @see #queryCourseGrade(String, String)
      */
     public void selectCourse(String sno, String cno) {
         String sql = "insert into stu_course values (?,?,null)";
@@ -119,7 +75,6 @@ public class StudentDAO extends BaseDAO {
      *
      * @Description: drop course for a student.
      * (sno, cno) should be checked additionally!
-     * @see #queryCourseGrade(String, String)
      */
     public void dropCourse(String sno, String cno) {
         String sql = "delete from stu_course where sno=? and cno=?";

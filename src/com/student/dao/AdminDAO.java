@@ -64,16 +64,6 @@ public class AdminDAO extends BaseDAO {
 
     /**
      *
-     * @Description: update a student's grade.
-     */
-    public int updateCourseGrade(String sno, String cno, String grade) {
-        String sql = "update stu_course set grade=? where sno=? and cno=?";
-        String[] param = {grade, sno, cno};
-        return db.executeUpdate(sql, param);
-    }
-
-    /**
-     *
      * @throws CourseExistException
      * @Description: AddCourse
      */
@@ -132,8 +122,7 @@ public class AdminDAO extends BaseDAO {
      * @throws StudentSelectedCourseException
      * @Description: DelStudent
      */
-    public void DelStudent(String sno)
-            throws StudentNotFoundException, StudentSelectedCourseException {
+    public void DelStudent(String sno) throws StudentNotFoundException, StudentSelectedCourseException {
         if (queryStudent(sno).length == 0) {
             // check if the student exist
             throw new StudentNotFoundException();
