@@ -22,7 +22,7 @@ public class StudentDAO extends BaseDAO {
     public String queryForLogin(String username, String password) {
         String result = null;
         String sql = "select sno from student where username=? and password=?";
-        String[] param = {username, getSHA256(password)};
+        String[] param = {username, getSHA256(password + username)};
         rs = db.executeQuery(sql, param);
         try {
             if (rs.next()) {
@@ -54,7 +54,7 @@ public class StudentDAO extends BaseDAO {
      */
     public String[][] querySelectedCourse(String sno) {
         String sql =
-                "select * from course where cno in (select cno from stu_course where sno=? and grade is null)";
+                "select * from course where cno in (select cno from stu_course where sno=?)";
         String[] param = {sno};
         rs = db.executeQuery(sql, param);
         return buildResult();
@@ -66,7 +66,7 @@ public class StudentDAO extends BaseDAO {
      * (sno, cno) should be checked additionally!
      */
     public void selectCourse(String sno, String cno) {
-        String sql = "insert into stu_course values (?,?,null)";
+        String sql = "insert into stu_course values (?,?)";
         String[] param = {sno, cno};
         db.executeUpdate(sql, param);
     }
