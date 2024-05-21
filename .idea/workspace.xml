@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="增添了数据库使用的README文档">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ea80b4e3-81c8-4da2-93b4-208528707ae8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ea80b4e3-81c8-4da2-93b4-208528707ae8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_5_13_21_29____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2024_5_13_21_29_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改了部分问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/AppConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/AppConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/model/Course.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +97,7 @@
       <workItem from="1715302631729" duration="14552000" />
       <workItem from="1715575543903" duration="7410000" />
       <workItem from="1715650593636" duration="6726000" />
-      <workItem from="1716279261215" duration="2822000" />
+      <workItem from="1716279261215" duration="4902000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -265,7 +259,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715659766419</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="修改了部分问题">
+      <option name="closed" value="true" />
+      <created>1716282420435</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1716282420435</updated>
+    </task>
+    <task id="LOCAL-00022" summary="修改了部分问题">
+      <option name="closed" value="true" />
+      <created>1716282500073</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1716282500073</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +298,7 @@
     <MESSAGE value="完善了数据库部分内容" />
     <MESSAGE value="添加了Test.java用于数据库测试" />
     <MESSAGE value="增添了数据库使用的README文档" />
-    <option name="LAST_COMMIT_MESSAGE" value="增添了数据库使用的README文档" />
+    <MESSAGE value="修改了部分问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了部分问题" />
   </component>
 </project>

@@ -1,5 +1,7 @@
 package com.student.model;
 
+import java.time.LocalDateTime;
+
 /**
  * @author mzm
  * @version 1.0
@@ -11,6 +13,10 @@ public class Course {
     private int credit;
     private String cdept;
     private String tname;
+    private String start_time;
+    private String end_time;
+
+    private String location;
 
     public Course(String cno) {
         this.cno = cno;
@@ -52,4 +58,36 @@ public class Course {
     public void setTname(String tname) {
         this.tname = tname;
     }
+
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public LocalDateTime getLocalDateStartTime() {
+        return LocalDateTime.parse(start_time);
+    }
+    public LocalDateTime getLocalDateEndTime() {
+        return LocalDateTime.parse(end_time);
+    }
+
 }
