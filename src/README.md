@@ -69,9 +69,9 @@
 
     +----------+-------------------+------+-----+---------+-------+
 
-    | sno      | char(255)          | NO   | PRI | NULL    |       |
+    | sno      | char(255)         | NO   | PRI | NULL    |       |
 
-    | sname    | char(255)          | NO   |     | NULL    |       |
+    | sname    | char(255)         | NO   |     | NULL    |       |
 
     | sex      | enum('男','女')   | YES  |     | NULL    |       |
 
