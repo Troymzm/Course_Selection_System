@@ -24,7 +24,7 @@ public class AdminDAO extends BaseDAO {
      */
     public String[][] queryStuWhoSeleCou(String cno) {
         String sql =
-                "select sno,grade from course as A, stu_course as B where A.cno=B.cno and A.cno=?";
+                "select sno from course as A, stu_course as B where A.cno=B.cno and A.cno=?";
         String[] param = {cno};
         rs = db.executeQuery(sql, param);
         return buildResult();

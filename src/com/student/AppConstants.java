@@ -9,7 +9,7 @@ package com.student;
 public class AppConstants {
     // JDBC
     public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String JDBC_URL = "jdbc:mysql://192.168.248.134:3306/course_selection";
+    public static final String JDBC_URL = "jdbc:mysql://192.168.54.134:3306/course_selection";
     public static final String JDBC_USERNAME = "819";
     public static final String JDBC_PASSWORD = "819";
 }

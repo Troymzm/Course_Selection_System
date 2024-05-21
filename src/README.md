@@ -10,7 +10,7 @@
 
 连接数据库时请联系我以便于登上我的局域网络
 
-连接时请在cmd输入`mysql -h 192.168.248.134 -u 819 -p`之后根据提示输入密码`819`即可
+连接时请在cmd输入`mysql -h 192.168.54.134 -u 819 -p`之后根据提示输入密码`819`即可
 
 如果通过idea进行连接注意配置mysql驱动程序，具体操作步骤见https://www.cnblogs.com/Ran-Chen/p/9646187.html
 
@@ -69,51 +69,57 @@
 
     +----------+-------------------+------+-----+---------+-------+
 
-    | sno      | char(4)           | NO   | PRI | NULL    |       |
+    | sno      | char(255)          | NO   | PRI | NULL    |       |
 
-    | sname    | char(8)           | NO   |     | NULL    |       |
+    | sname    | char(255)          | NO   |     | NULL    |       |
 
     | sex      | enum('男','女')   | YES  |     | NULL    |       |
 
     | age      | int(11)           | YES  |     | NULL    |       |
 
-    | sdept    | char(10)          | YES  |     | NULL    |       |
+    | sdept    | char(255)         | YES  |     | NULL    |       |
 
-    | username | char(20)          | NO   | UNI | NULL    |       |
+    | username | char(255)         | NO   | UNI | NULL    |       |
 
     | password | char(64)          | NO   |     | NULL    |       |
 
     +----------+-------------------+------+-----+---------+-------+
 
 ### course 表
-    +--------+----------+------+-----+---------+-------+
+    +-------------+-----------+------+-----+---------+-------+
 
-    | Field  | Type     | Null | Key | Default | Extra |
+    | Field       |  Type     | Null | Key | Default | Extra |
 
-    +--------+----------+------+-----+---------+-------+
+    +-------------+-----------+------+-----+---------+-------+
 
-    | cno    | char(4)  | NO   | PRI | NULL    |       |
+    | cno         | char(255) | NO   | PRI | NULL    |       |
 
-    | cname  | char(20) | NO   |     | NULL    |       |
+    | cname       | char(255) | NO   |     | NULL    |       |
 
-    | credit | int(11)  | YES  |     | 0       |       |
+    | credit      | int(11)   | YES  |     | 0       |       |
 
-    | cdept  | char(10) | YES  |     | NULL    |       |
+    | cdept       | char(255) | YES  |     | NULL    |       |
 
-    | tname  | char(8)  | YES  |     | NULL    |       |
+    | tname       | char(255) | YES  |     | NULL    |       |
 
-    +--------+----------+------+-----+---------+-------+
+    | start_time  | datetime  | NO   |     | NULL    |       |
+
+    | end_time    | datetime  | NO   |     | NULL    |       |
+
+    | location    | char(255) | NO   |     | NULL    |       |
+
+    +-------------+-----------+------+-----+---------+-------+
 
 ### stu_course 表
-    +-------+---------+------+-----+---------+-------+
+    +-------+-----------+------+-----+---------+-------+
 
-    | Field | Type    | Null | Key | Default | Extra |
+    | Field | Type      | Null | Key | Default | Extra |
 
-    +-------+---------+------+-----+---------+-------+
+    +-------+-----------+------+-----+---------+-------+
 
-    | sno   | char(4) | NO   | PRI | NULL    |       |
+    | sno   | char(255) | NO   | PRI | NULL    |       |
 
-    | cno   | char(4) | NO   | PRI | NULL    |       |
+    | cno   | char(255) | NO   | PRI | NULL    |       |
 
-    +-------+---------+------+-----+---------+-------+
+    +-------+-----------+------+-----+---------+-------+
 
