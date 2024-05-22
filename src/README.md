@@ -36,7 +36,7 @@
 
 `public void AddCourse(String[] param) throws CourseExistException` 添加课程 
 
-注: `param` 的格式: `String[] param = {"课程编号", "课程名称", "课程学分", "开课院系", "授课教师"}`
+注: `param` 的格式: `String[] param = {"课程编号", "课程名称", "课程学分", "开课院系", "授课教师", "上课地点", "学年", "季节", "开始周", "结束周", "开始时间", "结束时间"}`
 
 `public void DelCourse(String cno) throws CourseNotFoundException, CourseSelectedException` 删除课程编号为`cno`的课程
 

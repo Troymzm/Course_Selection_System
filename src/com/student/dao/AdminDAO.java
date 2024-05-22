@@ -72,7 +72,7 @@ public class AdminDAO extends BaseDAO {
             // check if the course exist
             throw new CourseExistException();
         }
-        String sql = "insert into course values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into course values(?,?,?,?,?,?,?,?,?,?,?,?)";
         db.executeUpdate(sql, param);
     }
 
