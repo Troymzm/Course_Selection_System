@@ -63,63 +63,41 @@
 ## 数据库结构
 
 ### student 表
-    +----------+-------------------+------+-----+---------+-------+
-
-    | Field    | Type              | Null | Key | Default | Extra |
-
-    +----------+-------------------+------+-----+---------+-------+
-
-    | sno      | char(255)         | NO   | PRI | NULL    |       |
-
-    | sname    | char(255)         | NO   |     | NULL    |       |
-
-    | sex      | enum('男','女')   | YES  |     | NULL    |       |
-
-    | age      | int(11)           | YES  |     | NULL    |       |
-
-    | sdept    | char(255)         | YES  |     | NULL    |       |
-
-    | username | char(255)         | NO   | UNI | NULL    |       |
-
-    | password | char(64)          | NO   |     | NULL    |       |
-
-    +----------+-------------------+------+-----+---------+-------+
+    +----------+-----------------+------+-----+---------+-------+
+    | Field    | Type            | Null | Key | Default | Extra |
+    +----------+-----------------+------+-----+---------+-------+
+    | sno      | varchar(255)    | NO   | PRI | NULL    |       |
+    | sname    | varchar(255)    | YES  |     | NULL    |       |
+    | sex      | enum('男','女') | YES  |     | NULL    |       |
+    | age      | int             | YES  |     | NULL    |       |
+    | sdept    | varchar(255)    | YES  |     | NULL    |       |
+    | username | varchar(255)    | YES  | UNI | NULL    |       |
+    | password | char(64)        | NO   |     | NULL    |       |
+    +----------+-----------------+------+-----+---------+-------+
 
 ### course 表
-    +-------------+-----------+------+-----+---------+-------+
-
-    | Field       |  Type     | Null | Key | Default | Extra |
-
-    +-------------+-----------+------+-----+---------+-------+
-
-    | cno         | char(255) | NO   | PRI | NULL    |       |
-
-    | cname       | char(255) | NO   |     | NULL    |       |
-
-    | credit      | int(11)   | YES  |     | 0       |       |
-
-    | cdept       | char(255) | YES  |     | NULL    |       |
-
-    | tname       | char(255) | YES  |     | NULL    |       |
-
-    | start_time  | datetime  | NO   |     | NULL    |       |
-
-    | end_time    | datetime  | NO   |     | NULL    |       |
-
-    | location    | char(255) | NO   |     | NULL    |       |
-
-    +-------------+-----------+------+-----+---------+-------+
+    +-----------------+---------------------------+------+-----+---------+-------+
+    | Field           | Type                      | Null | Key | Default | Extra |
+    +-----------------+---------------------------+------+-----+---------+-------+
+    | cno             | varchar(255)              | NO   | PRI | NULL    |       |
+    | cname           | varchar(255)              | YES  |     | NULL    |       |
+    | credit          | int                       | YES  |     | NULL    |       |
+    | cdept           | varchar(255)              | YES  |     | NULL    |       |
+    | tname           | varchar(255)              | YES  |     | NULL    |       |
+    | location        | varchar(255)              | YES  |     | NULL    |       |
+    | semester_year   | int                       | YES  |     | NULL    |       |
+    | semester_season | enum('春','夏','秋','冬') | YES  |     | NULL    |       |
+    | week_start      | int                       | YES  |     | NULL    |       |
+    | week_end        | int                       | YES  |     | NULL    |       |
+    | time_start      | time                      | YES  |     | NULL    |       |
+    | time_end        | time                      | YES  |     | NULL    |       |
+    +-----------------+---------------------------+------+-----+---------+-------+
 
 ### stu_course 表
-    +-------+-----------+------+-----+---------+-------+
-
-    | Field | Type      | Null | Key | Default | Extra |
-
-    +-------+-----------+------+-----+---------+-------+
-
-    | sno   | char(255) | NO   | PRI | NULL    |       |
-
-    | cno   | char(255) | NO   | PRI | NULL    |       |
-
-    +-------+-----------+------+-----+---------+-------+
+    +-------+--------------+------+-----+---------+-------+
+    | Field | Type         | Null | Key | Default | Extra |
+    +-------+--------------+------+-----+---------+-------+
+    | sno   | varchar(255) | YES  |     | NULL    |       |
+    | cno   | varchar(255) | YES  |     | NULL    |       |
+    +-------+--------------+------+-----+---------+-------+
 
