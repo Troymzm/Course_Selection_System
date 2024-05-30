@@ -2,12 +2,19 @@ package com.student.dao;
 
 import com.student.base.BaseDAO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 /**
  * @author mzm
  * @version 1.0
  * 学生数据访问类
+ */
+
+/**
+ * @author zqx
+ * @version 2.0
  */
 public class StudentDAO extends BaseDAO {
     private static StudentDAO sd = null;
@@ -18,6 +25,7 @@ public class StudentDAO extends BaseDAO {
         }
         return sd;
     }
+
 
     public String queryForLogin(String username, String password) {
         String result = null;
@@ -40,11 +48,10 @@ public class StudentDAO extends BaseDAO {
      *
      * @Description: query optional courses for a student.
      */
-    public String[][] queryCourses(String sno) {
+    public String[][] queryCourses() {
         String sql =
-                "select * from course where cno not in (select cno from stu_course where sno=?)";
-        String[] param = {sno};
-        rs = db.executeQuery(sql, param);
+                "select * from course ";
+        rs = db.executeQuery(sql);
         return buildResult();
     }
 
@@ -52,11 +59,18 @@ public class StudentDAO extends BaseDAO {
      *
      * @Description: query selected courses for a student.
      */
-    public String[][] querySelectedCourse(String sno) {
-        String sql =
+    public String[][] querySelectedCourse(String username) throws SQLException {
+
+        String sql1 = "select sno from student where username = ?";
+        String[] param1 = {username};
+        rs = db.executeQuery(sql1,param1);
+        String sno = rs.getString("sno");
+        rs = null;
+
+        String sql2 =
                 "select * from course where cno in (select cno from stu_course where sno=?)";
-        String[] param = {sno};
-        rs = db.executeQuery(sql, param);
+        String[] param2 = {sno};
+        rs = db.executeQuery(sql2, param2);
         return buildResult();
     }
 
@@ -66,9 +80,11 @@ public class StudentDAO extends BaseDAO {
      * (sno, cno) should be checked additionally!
      */
     public void selectCourse(String sno, String cno) {
+
         String sql = "insert into stu_course values (?,?)";
         String[] param = {sno, cno};
         db.executeUpdate(sql, param);
+
     }
 
     /**
@@ -81,4 +97,13 @@ public class StudentDAO extends BaseDAO {
         String[] param = {sno, cno};
         db.executeUpdate(sql, param);
     }
+
+    public void queryStudentInformation(String username){
+
+    }
+
+    public void updateStudentInformation(String username){
+
+    }
+
 }

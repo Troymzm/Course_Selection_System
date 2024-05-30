@@ -5,40 +5,46 @@ package com.student.model;
  * @version 1.0
  * 学生实体类
  */
+
+/**
+ * @author zqx
+ * @version 2.0
+ */
+
 public class Student {
-    private String sno;
-    private String sname;
-    private String sex;
+    private String studentNumber;
+    private String studentName;
+    private String gender;
     private int age;
-    private String sdept;
-    private String username;
+    private String studentDepartment;
+    private String userName;
 
-    public Student(String sno) {
-        this.sno = sno;
+    public Student(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
-    public String getSno() {
-        return sno;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
-    public void setSno(String sno) {
-        this.sno = sno;
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
-    public String getSname() {
-        return sname;
+    public String getName() {
+        return studentName;
     }
 
-    public void setSname(String sname) {
-        this.sname = sname;
+    public void setName(String name) {
+        this.studentName = name;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {
@@ -49,19 +55,19 @@ public class Student {
         this.age = age;
     }
 
-    public String getSdept() {
-        return sdept;
+    public String getStudentDepartment() {
+        return studentDepartment;
     }
 
-    public void setSdept(String sdept) {
-        this.sdept = sdept;
+    public void setStudentDepartment(String studentDepartment) {
+        this.studentDepartment = studentDepartment;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

@@ -1,6 +1,8 @@
 package com.student.base;
 
+
 import com.student.util.DBUtil;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -108,7 +110,9 @@ public abstract class BaseDAO {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
         return ret;
+
     }
 
     /**
@@ -148,6 +152,7 @@ public abstract class BaseDAO {
     }
 
     public class StudentSelectedCourseException extends Exception {
+
 
         private static final long serialVersionUID = 1L;
 

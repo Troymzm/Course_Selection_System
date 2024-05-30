@@ -7,41 +7,48 @@ import java.time.LocalTime;
  * @version 1.0
  * 课程实体类
  */
+/**
+ * @author zqx
+ * @version 2.0
+ */
+
 public class Course {
-    private String cno;
-    private String cname;
+    private String courseNumber;
+    private String courseName;
     private int credit;
-    private String cdept;
-    private String tname;
+    private String courseDepartment;
+    private String teacherName;
     private String location;
-    private int semester_year;
-    private String semester_season;
-    private int week_start;
-    private int week_end;
+    private int semesterYear;
+    private String semesterSeason;
+    private int weekStart;
+    private int weekEnd;
 
-    private String time_start;
-    private String time_end;
+    private String timeStart;
+    private String timeEnd;
 
-
-
-    public Course(String cno) {
-        this.cno = cno;
+    public String getCourseDepartment() {
+        return courseDepartment;
     }
 
-    public String getCno() {
-        return cno;
+    public Course(String courseNumber) {
+        this.courseNumber = courseNumber;
     }
 
-    public void setCno(String cno) {
-        this.cno = cno;
+    public String getCourseNumber() {
+        return courseNumber;
     }
 
-    public String getCname() {
-        return cname;
+    public void setCourseNumber(String courseNumber) {
+        this.courseNumber = courseNumber;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public int getCredit() {
@@ -53,16 +60,16 @@ public class Course {
         this.credit = credit;
     }
 
-    public void setCdept(String cdept) {
-        this.cdept = cdept;
+    public void setCourseDepartment(String courseDepartment) {
+        this.courseDepartment = courseDepartment;
     }
 
-    public String getTname() {
-        return tname;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setTname(String tname) {
-        this.tname = tname;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public String getLocation() {
@@ -73,57 +80,57 @@ public class Course {
         this.location = location;
     }
 
-    public int getSemester_year() {
-        return semester_year;
+    public int getSemesterYear() {
+        return semesterYear;
     }
 
-    public void setSemester_year(int semester_year) {
-        this.semester_year = semester_year;
+    public void setSemesterYear(int semesterYear) {
+        this.semesterYear = semesterYear;
     }
 
-    public String getSemester_season() {
-        return semester_season;
+    public String getSemesterSeason() {
+        return semesterSeason;
     }
 
-    public void setSemester_season(String semester_season) {
-        this.semester_season = semester_season;
+    public void setSemesterSeason(String semesterSeason) {
+        this.semesterSeason = semesterSeason;
     }
 
-    public int getWeek_start() {
-        return week_start;
+    public int getWeekStart() {
+        return weekStart;
     }
 
-    public void setWeek_start(int week_start) {
-        this.week_start = week_start;
+    public void setWeekStart(int weekStart) {
+        this.weekStart = weekStart;
     }
 
-    public int getWeek_end() {
-        return week_end;
+    public int getWeekEnd() {
+        return weekEnd;
     }
 
-    public void setWeek_end(int week_end) {
-        this.week_end = week_end;
+    public void setWeekEnd(int weekEnd) {
+        this.weekEnd = weekEnd;
     }
 
-    public String getTime_start() {
-        return time_start;
+    public String getTimeStart() {
+        return timeStart;
     }
 
-    public void setTime_start(String time_start) {
-        this.time_start = time_start;
+    public void setTimeStart(String timeStart) {
+        this.timeStart = timeStart;
     }
 
-    public String getTime_end() {
-        return time_end;
+    public String getTimeEnd() {
+        return timeEnd;
     }
 
-    public void setTime_end(String time_end) {
-        this.time_end = time_end;
+    public void setTimeEnd(String timeEnd) {
+        this.timeEnd = timeEnd;
     }
     public LocalTime getLocalTimeStart() {
-        return LocalTime.parse(time_start);
+        return LocalTime.parse(timeStart);
     }
     public LocalTime getLocalTimeEnd() {
-        return LocalTime.parse(time_end);
+        return LocalTime.parse(timeEnd);
     }
 }
