@@ -1,10 +1,5 @@
 import com.student.base.BaseDAO;
 import com.student.dao.AdminDAO;
-import com.student.AppConstants;
-import com.student.dao.StudentDAO;
-import com.student.util.DBUtil;
-
-import java.util.List;
 
 /**
  * @author mzm
@@ -25,5 +20,8 @@ public class Test {
             }
             System.out.println();
         }
+
+
+
     }
 }

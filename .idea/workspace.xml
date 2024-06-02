@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改了命名问题" />
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修正部分变量命名，完善和添加了StudentDAO中部分方法">
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/studentexceptions/CourseTimeConflictException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/studentexceptions/NoCourseToSelectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/studentexceptions/NoSelectedCourseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/service/CourseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/dao/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/dao/StudentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/service/CourseInfoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/service/StudentInfoService.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,12 +33,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Troymzm&quot;
-  }
-}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -37,45 +44,41 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
   <component name="ProjectId" id="2gBnnfKVmpZSrH7oiSC34Zchotj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/code/ideaJava/javastudy_git&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;E:/code/ideaJava/Course_Selection_System/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;应用程序.Test.executor&quot;: &quot;Run&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ]
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\project\Java\Course_Selection_System\src\com\student" />
+      <recent name="E:\project\Java\Course_Selection_System\src\com\student\base" />
       <recent name="E:\code\ideaJava\Course_Selection_System\src" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.student.dao" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -96,7 +99,9 @@
       <workItem from="1716344109379" duration="2885000" />
       <workItem from="1716797769100" duration="24000" />
       <workItem from="1716991508610" duration="448000" />
-      <workItem from="1717076656722" duration="9155000" />
+      <workItem from="1717076656722" duration="4266000" />
+      <workItem from="1717340492440" duration="690000" />
+      <workItem from="1717341587276" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -306,23 +311,7 @@
       <option name="project" value="LOCAL" />
       <updated>1717139368736</updated>
     </task>
-    <task id="LOCAL-00027" summary="修改了部分问题">
-      <option name="closed" value="true" />
-      <created>1717140455241</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1717140455241</updated>
-    </task>
-    <task id="LOCAL-00028" summary="修改了命名问题">
-      <option name="closed" value="true" />
-      <created>1717313838625</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1717313838625</updated>
-    </task>
-    <option name="localTasksCounter" value="29" />
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,6 +327,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first submission" />
@@ -346,7 +336,6 @@
     <MESSAGE value="添加了Test.java用于数据库测试" />
     <MESSAGE value="增添了数据库使用的README文档" />
     <MESSAGE value="修改了部分问题" />
-    <MESSAGE value="修改了命名问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了命名问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了部分问题" />
   </component>
 </project>

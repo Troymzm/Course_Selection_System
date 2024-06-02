@@ -10,23 +10,23 @@ import java.sql.SQLException;
  * 学生数据访问类
  */
 public class StudentDAO extends BaseDAO {
-    private static StudentDAO sd = null;
+    private static StudentDAO studentDAO = null;
 
     public static synchronized StudentDAO getInstance() {
-        if (sd == null) {
-            sd = new StudentDAO();
+        if (studentDAO == null) {
+            studentDAO = new StudentDAO();
         }
-        return sd;
+        return studentDAO;
     }
 
     public String queryForLogin(String username, String password) {
         String result = null;
-        String sql = "select sno from student where username=? and password=?";
+        String sql = "select studentNo from student where username=? and password=?";
         String[] param = {username, getSHA256(password + username)};
-        rs = db.executeQuery(sql, param);
+        resultSet = db.executeQuery(sql, param);
         try {
-            if (rs.next()) {
-                result = rs.getString("sno");
+            if (resultSet.next()) {
+                result = resultSet.getString("studentNo");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,11 +40,11 @@ public class StudentDAO extends BaseDAO {
      *
      * @Description: query optional courses for a student.
      */
-    public String[][] queryCourses(String sno) {
+    public String[][] queryCourses(String studentNo) {
         String sql =
-                "select * from course where cno not in (select cno from stu_course where sno=?)";
-        String[] param = {sno};
-        rs = db.executeQuery(sql, param);
+                "select * from course where courseNo not in (select courseNo from stu_course where studentNo=?)";
+        String[] parameter = {studentNo};
+        resultSet = db.executeQuery(sql, parameter);
         return buildResult();
     }
 
@@ -52,33 +52,33 @@ public class StudentDAO extends BaseDAO {
      *
      * @Description: query selected courses for a student.
      */
-    public String[][] querySelectedCourse(String sno) {
+    public String[][] querySelectedCourse(String studentNo) {
         String sql =
-                "select * from course where cno in (select cno from stu_course where sno=?)";
-        String[] param = {sno};
-        rs = db.executeQuery(sql, param);
+                "select * from course where courseNo in (select courseNo from stu_course where studentNo=?)";
+        String[] parameter = {studentNo};
+        resultSet = db.executeQuery(sql, parameter);
         return buildResult();
     }
 
     /**
      *
      * @Description: select course for a student.<br>
-     * (sno, cno) should be checked additionally!
+     * (studentNo, courseNo) should be checked additionally!
      */
-    public void selectCourse(String sno, String cno) {
+    public void selectCourse(String studentNo, String courseNo) {
         String sql = "insert into stu_course values (?,?)";
-        String[] param = {sno, cno};
-        db.executeUpdate(sql, param);
+        String[] parameter = {studentNo, courseNo};
+        db.executeUpdate(sql, parameter);
     }
 
     /**
      *
      * @Description: drop course for a student.
-     * (sno, cno) should be checked additionally!
+     * (studentNo, courseNo) should be checked additionally!
      */
-    public void dropCourse(String sno, String cno) {
-        String sql = "delete from stu_course where sno=? and cno=?";
-        String[] param = {sno, cno};
-        db.executeUpdate(sql, param);
+    public void dropCourse(String studentNo, String courseNo) {
+        String sql = "delete from stu_course where studentNo=? and courseNo=?";
+        String[] parameter = {studentNo, courseNo};
+        db.executeUpdate(sql, parameter);
     }
 }
