@@ -12,9 +12,9 @@ import java.sql.*;
 public class DBUtil {
     private static DBUtil db;
 
-    private Connection conn;
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private Connection connection;
+    private PreparedStatement prepareStatements;
+    private ResultSet resultSet;
 
     private DBUtil() {
 
@@ -29,14 +29,14 @@ public class DBUtil {
 
     public void close() {
         try {
-            if (rs != null) {
-                rs.close();
+            if (resultSet != null) {
+                resultSet.close();
             }
-            if (ps != null) {
-                ps.close();
+            if (prepareStatements != null) {
+                prepareStatements.close();
             }
-            if (conn != null) {
-                conn.close();
+            if (connection != null) {
+                connection.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,43 +44,43 @@ public class DBUtil {
     }
 
     public ResultSet executeQuery(String sql, Object[] obj) {
-        if (getConn() == null) {
+        if (getConnection() == null) {
             return null;
         }
         try {
-            ps = conn.prepareStatement(sql);
+            prepareStatements = connection.prepareStatement(sql);
             for (int i = 0; i < obj.length; i++) {
-                ps.setObject(i + 1, obj[i]);
+                prepareStatements.setObject(i + 1, obj[i]);
             }
-            rs = ps.executeQuery();
+            resultSet = prepareStatements.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return rs;
+        return resultSet;
     }
 
     public ResultSet executeQuery(String sql) {
-        if (getConn() == null) {
+        if (getConnection() == null) {
             return null;
         }
         try {
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
+            prepareStatements = connection.prepareStatement(sql);
+            resultSet = prepareStatements.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return rs;
+        return resultSet;
     }
 
     public int executeUpdate(String sql) {
         int result = -1;
-        if (getConn() == null) {
+        if (getConnection() == null) {
             return result;
         }
         try {
-            ps = conn.prepareStatement(sql);
-            result = ps.executeUpdate();
+            prepareStatements = connection.prepareStatement(sql);
+            result = prepareStatements.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,26 +89,26 @@ public class DBUtil {
 
     public int executeUpdate(String sql, Object[] obj) {
         int result = -1;
-        if (getConn() == null) {
+        if (getConnection() == null) {
             return result;
         }
         try {
-            ps = conn.prepareStatement(sql);
+            prepareStatements = connection.prepareStatement(sql);
             for (int i = 0; i < obj.length; i++) {
-                ps.setObject(i + 1, obj[i]);
+                prepareStatements.setObject(i + 1, obj[i]);
             }
-            result = ps.executeUpdate();
+            result = prepareStatements.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
     }
 
-    private Connection getConn() {
+    private Connection getConnection() {
         try {
-            if (conn == null || conn.isClosed()) {
+            if (connection == null || connection.isClosed()) {
                 Class.forName(AppConstants.JDBC_DRIVER);
-                conn = DriverManager.getConnection(AppConstants.JDBC_URL,
+                connection = DriverManager.getConnection(AppConstants.JDBC_URL,
                         AppConstants.JDBC_USERNAME, AppConstants.JDBC_PASSWORD);
             }
         } catch (ClassNotFoundException e) {
@@ -116,6 +116,6 @@ public class DBUtil {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return conn;
+        return connection;
     }
 }

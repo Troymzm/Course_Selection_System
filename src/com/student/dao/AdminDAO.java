@@ -9,13 +9,13 @@ import com.student.base.BaseDAO;
  * 管理员数据访问类
  */
 public class AdminDAO extends BaseDAO {
-    private static AdminDAO ad = null;
+    private static AdminDAO adminDAO = null;
 
     public static synchronized AdminDAO getInstance() {
-        if (ad == null) {
-            ad = new AdminDAO();
+        if (adminDAO == null) {
+            adminDAO = new AdminDAO();
         }
-        return ad;
+        return adminDAO;
     }
 
 
@@ -23,31 +23,31 @@ public class AdminDAO extends BaseDAO {
      *
      * @Description: query students who have selected a specific course.
      */
-    public String[][] queryStuWhoSeleCou(String cno) {
+    public String[][] queryStuWhoSelectCourse(String courseNo) {
         String sql =
-                "select sno from course as A, stu_course as B where A.cno=B.cno and A.cno=?";
-        String[] param = {cno};
-        rs = db.executeQuery(sql, param);
+                "select studentNo from course as A, stu_course as B where A.courseNo=B.courseNo and A.courseNo=?";
+        String[] parameter = {courseNo};
+        resultSet = db.executeQuery(sql, parameter);
         return buildResult();
     }
 
     /**
      *
-     * @Description: get all courses.
+     * @Description: list all courses.
      */
-    public String[][] getAllCourses() {
+    public String[][] listAllCourses() {
         String sql = "select * from course";
-        rs = db.executeQuery(sql);
+        resultSet = db.executeQuery(sql);
         return buildResult();
     }
 
     /**
      *
-     * @Description: get all students.
+     * @Description: list all students.
      */
-    public String[][] getAllStudents() {
+    public String[][] listAllStudents() {
         String sql = "select * from student";
-        rs = db.executeQuery(sql);
+        resultSet = db.executeQuery(sql);
         return buildResult();
     }
 
@@ -56,45 +56,45 @@ public class AdminDAO extends BaseDAO {
      *
      * @Description: query the course for a student.
      */
-    public String[][] queryCourses(String sno) {
-        String sql = "select cno from stu_course where sno=?";
-        String[] param = {sno};
-        rs = db.executeQuery(sql, param);
+    public String[][] queryCourses(String studentNo) {
+        String sql = "select courseNo from stu_course where studentNo=?";
+        String[] parameter = {studentNo};
+        resultSet = db.executeQuery(sql, parameter);
         return buildResult();
     }
 
     /**
      *
      * @throws CourseExistException
-     * @Description: AddCourse
+     * @Description: addCourse
      */
-    public void AddCourse(String[] param) throws CourseExistException {
-        if (queryCourse(param[0]).length != 0) {
+    public void addCourse(String[] parameter) throws CourseExistException {
+        if (queryCourse(parameter[0]).length != 0) {
             // check if the course exist
             throw new CourseExistException();
         }
-        String sql = "insert into course values(?,?,?,?,?,?,?,?,?,?,?,?)";
-        db.executeUpdate(sql, param);
+        String sql = "insert into course values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        db.executeUpdate(sql, parameter);
     }
 
     /**
      *
      * @throws CourseNotFoundException
      * @throws CourseSelectedException
-     * @Description: DelCourse
+     * @Description: deleteCourse
      */
-    public void DelCourse(String cno) throws CourseNotFoundException, CourseSelectedException {
-        if (queryCourse(cno).length == 0) {
+    public void deleteCourse(String courseNo) throws CourseNotFoundException, CourseSelectedException {
+        if (queryCourse(courseNo).length == 0) {
             // check if the course exist
             throw new CourseNotFoundException();
         }
-        if (queryStuWhoSeleCou(cno).length != 0) {
+        if (queryStuWhoSelectCourse(courseNo).length != 0) {
             // check if some student selected the course
             throw new CourseSelectedException();
         }
-        String sql = "delete from course where cno=?";
-        String[] param = {cno};
-        db.executeUpdate(sql, param);
+        String sql = "delete from course where courseNo=?";
+        String[] parameter = {courseNo};
+        db.executeUpdate(sql, parameter);
     }
 
     /**
@@ -103,37 +103,37 @@ public class AdminDAO extends BaseDAO {
      * @throws UserExistException
      * @Description: AddStudent
      */
-    public void AddStudent(String[] param) throws StudentExistException, UserExistException {
-        if (queryStudent(param[0]).length != 0) {
+    public void addStudent(String[] parameter) throws StudentExistException, UserExistException {
+        if (queryStudent(parameter[0]).length != 0) {
             // check if the student exist
             throw new StudentExistException();
         }
-        if (queryUser(param[6]).length != 0) {
+        if (queryUser(parameter[6]).length != 0) {
             // check if the username exist
             throw new UserExistException();
         }
         String sql = "insert into student values(?,?,?,?,?,?,?)";
-        param[6] = getSHA256(param[6] + param[5]);
-        db.executeUpdate(sql, param);
+        parameter[6] = getSHA256(parameter[6] + parameter[5]);
+        db.executeUpdate(sql, parameter);
     }
 
     /**
      *
      * @throws StudentNotFoundException
      * @throws StudentSelectedCourseException
-     * @Description: DelStudent
+     * @Description: deleteStudent
      */
-    public void DelStudent(String sno) throws StudentNotFoundException, StudentSelectedCourseException {
-        if (queryStudent(sno).length == 0) {
+    public void deleteStudent(String studentNo) throws StudentNotFoundException, StudentSelectedCourseException {
+        if (queryStudent(studentNo).length == 0) {
             // check if the student exist
             throw new StudentNotFoundException();
         }
-        if (queryCourses(sno).length != 0) {
+        if (queryCourses(studentNo).length != 0) {
             // check if the student selected some course
             throw new StudentSelectedCourseException();
         }
-        String sql = "delete from student where sno=?";
-        String[] param = {sno};
-        db.executeUpdate(sql, param);
+        String sql = "delete from student where studentNo=?";
+        String[] parameter = {studentNo};
+        db.executeUpdate(sql, parameter);
     }
 }

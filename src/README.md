@@ -10,7 +10,7 @@
 
 连接数据库时请联系我以便于登上我的局域网络
 
-连接时请在cmd输入`mysql -h 192.168.54.134 -u 819 -p`之后根据提示输入密码`819`即可
+连接时请在cmd输入`mysql -h 192.168.139.134 -u 819 -p`之后根据提示输入密码`819`即可
 
 如果通过idea进行连接注意配置mysql驱动程序，具体操作步骤见https://www.cnblogs.com/Ran-Chen/p/9646187.html
 
@@ -26,78 +26,78 @@
 ### 管理员操作方法
 `public static synchronized AdminDAO getInstance()` 返回一个管理员对象
 
-`public String[][] queryStuWhoSeleCou(String courseNumber)` 返回课程编号为`courseNumber`的选课结果
+`public String[][] queryStudentWhoSelectCourse(String courseNo)` 返回课程编号为`courseNo`的选课结果
 
-`public String[][] getAllCourses()` 返回所有课程
+`public String[][] listAllCourses()` 返回所有课程
 
-`public String[][] getAllStudents()` 返回所有学生
+`public String[][] listAllStudents()` 返回所有学生
 
-`public String[][] queryCourses(String studentNumber)` 返回学号为`studentNumber`的学生的选课结果
+`public String[][] queryCourses(String studentNo)` 返回学号为`studentNo`的学生的选课结果
 
-`public void AddCourse(String[] param) throws CourseExistException` 添加课程 
+`public void addCourse(String[] parameter) throws CourseExistException` 添加课程 
 
-注: `param` 的格式: `String[] param = {"课程编号", "课程名称", "课程学分", "开课院系", "授课教师", "上课地点", "学年", "季节", "开始周", "结束周", "开始时间", "结束时间"}`
+注: `parameter` 的格式: `String[] parameter = {"课程编号", "课程名称", "课程学分", "开课院系", "授课教师", "上课地点", "学年", "季节", "开始周", "结束周", "开始时间", "结束时间", "选课人数上限"}`
 
-`public void DelCourse(String courseNumber) throws CourseNotFoundException, CourseSelectedException` 删除课程编号为`courseNumber`的课程
+`public void deleteCourse(String courseNo) throws CourseNotFoundException, CourseSelectedException` 删除课程编号为`courseNo`的课程
 
-`public void AddStudent(String[] param) throws StudentExistException, UserExistException` 添加学生
+`public void addStudent(String[] parameter) throws StudentExistException, UserExistException` 添加学生
 
-注: `param` 的格式: `String[] param = {"学号", "姓名", "性别", "年龄", "院系", "用户名", "密码"}`
+注: `parameter` 的格式: `String[] parameter = {"学号", "姓名", "性别", "年龄", "院系", "用户名", "密码"}`
 
-`public void DelStudent(String studentNumber) throws StudentNotFoundException, StudentSelectedCourseException` 删除学号为`studentNumber`的学生
+`public void deleteStudent(String studentNo) throws StudentNotFoundException, StudentSelectedCourseException` 删除学号为`studentNo`的学生
 
 ### 学生操作方法
 
 `public static synchronized StudentDAO getInstance()` 返回一个学生对象
 
-`public String queryForLogin(String userName, String password)` 返回用户名为`userName`密码`password`进行密码检测的结果
+`public String queryForLogin(String username, String password)` 返回用户名为`username`密码`password`进行密码检测的结果
 
-`public String[][] queryCourses(String studentNumber)` 返回学号为`studentNumber`的学生的所有可选课程
+`public String[][] queryCourses(String studentNo)` 返回学号为`studentNo`的学生的所有可选课程
 
-`public String[][] querySelectedCourse(String studentNumber)` 返回学号为`studentNumber`的学生的所有已选课程
+`public String[][] querySelectedCourse(String studentNo)` 返回学号为`studentNo`的学生的所有已选课程
 
-`public void selectCourse(String studentNumber, String courseNumber)` 学号为`studentNumber`的学生选课课程编号为`courseNumber`的课程
+`public void selectCourse(String studentNo, String courseNo)` 学号为`studentNo`的学生选课课程编号为`courseNo`的课程
 
-`public void dropCourse(String studentNumber, String courseNumber)` 学号为`studentNumber`的学生退课课程编号为`courseNumber`的课程
+`public void dropCourse(String studentNo, String courseNo)` 学号为`studentNo`的学生退课课程编号为`courseNo`的课程
 
 ## 数据库结构
 
 ### student 表
-    +----------+-----------------+------+-----+---------+-------+
-    | Field    | Type            | Null | Key | Default | Extra |
-    +----------+-----------------+------+-----+---------+-------+
-    | studentNumber      | varchar(255)    | NO   | PRI | NULL    |       |
-    | sname    | varchar(255)    | YES  |     | NULL    |       |
-    | gender   | enum('男','女') | YES  |     | NULL    |       |
-    | age      | int             | YES  |     | NULL    |       |
-    | studentDepartment| varchar(255)    | YES  |     | NULL    |       |
-    | userName | varchar(255)    | YES  | UNI | NULL    |       |
-    | password | char(64)        | NO   |     | NULL    |       |
-    +----------+-----------------+------+-----+---------+-------+
+    +-------------------+-----------------+------+-----+---------+-------+
+    | Field             | Type            | Null | Key | Default | Extra |
+    +-------------------+-----------------+------+-----+---------+-------+
+    | studentNo         | varchar(255)    | NO   | PRI | NULL    |       |
+    | studentName       | varchar(255)    | YES  |     | NULL    |       |
+    | gender            | enum('男','女') | YES  |     | NULL    |       |
+    | age               | int             | YES  |     | NULL    |       |
+    | studentDepartment | varchar(255)    | YES  |     | NULL    |       |
+    | username          | varchar(255)    | YES  | UNI | NULL    |       |
+    | password          | char(64)        | NO   |     | NULL    |       |
+    +-------------------+-----------------+------+-----+---------+-------+
 
 ### course 表
-    +-----------------+---------------------------+------+-----+---------+-------+
-    | Field           | Type                      | Null | Key | Default | Extra |
-    +-----------------+---------------------------+------+-----+---------+-------+
-    | courseNumber             | varchar(255)              | NO   | PRI | NULL    |       |
-    | courseName           | varchar(255)              | YES  |     | NULL    |       |
-    | credit          | int                       | YES  |     | NULL    |       |
-    | courseDepartment           | varchar(255)              | YES  |     | NULL    |       |
-    | teacherName           | varchar(255)              | YES  |     | NULL    |       |
-    | location        | varchar(255)              | YES  |     | NULL    |       |
-    | semesterYear   | int                       | YES  |     | NULL    |       |
-    | semester_season | enum('春','夏','秋','冬') | YES  |     | NULL    |       |
-    | weekStart      | int                       | YES  |     | NULL    |       |
-    | weekEnd        | int                       | YES  |     | NULL    |       |
-    | timeStart      | time                      | YES  |     | NULL    |       |
-    | timeEnd        | time                      | YES  |     | NULL    |       |
-    +-----------------+---------------------------+------+-----+---------+-------+
+    +------------------+---------------------------+------+-----+---------+-------+
+    | Field            | Type                      | Null | Key | Default | Extra |
+    +------------------+---------------------------+------+-----+---------+-------+
+    | courseNo         | varchar(255)              | NO   | PRI | NULL    |       |
+    | courseName       | varchar(255)              | YES  |     | NULL    |       |
+    | credit           | int                       | YES  |     | NULL    |       |
+    | courseDepartment | varchar(255)              | YES  |     | NULL    |       |
+    | teacherName      | varchar(255)              | YES  |     | NULL    |       |
+    | location         | varchar(255)              | YES  |     | NULL    |       |
+    | semesterYear     | int                       | YES  |     | NULL    |       |
+    | semesterSeason   | enum('春','夏','秋','冬') | YES  |     | NULL    |       |
+    | weekStart        | int                       | YES  |     | NULL    |       |
+    | weekEnd          | int                       | YES  |     | NULL    |       |
+    | timeStart        | time                      | YES  |     | NULL    |       |
+    | timeEnd          | time                      | YES  |     | NULL    |       |
+    | maxNumber        | int                       | YES  |     | NULL    |       |
+    +------------------+---------------------------+------+-----+---------+-------+
 
 ### stu_course 表
-    +-------+--------------+------+-----+---------+-------+
-    | Field | Type         | Null | Key | Default | Extra |
-    +-------+--------------+------+-----+---------+-------+
-    | studentNumber   | varchar(255) | YES  |     | NULL    |       |
-    | courseNumber   | varchar(255) | YES  |     | NULL    |       |
-    +-------+--------------+------+-----+---------+-------+
-
+    +-----------+--------------+------+-----+---------+-------+
+    | Field     | Type         | Null | Key | Default | Extra |
+    +-----------+--------------+------+-----+---------+-------+
+    | studentNo | varchar(255) | YES  |     | NULL    |       |
+    | courseNo  | varchar(255) | YES  |     | NULL    |       |
+    +-----------+--------------+------+-----+---------+-------+

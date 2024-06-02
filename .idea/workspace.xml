@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改了部分问题" />
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改了命名问题" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +96,7 @@
       <workItem from="1716344109379" duration="2885000" />
       <workItem from="1716797769100" duration="24000" />
       <workItem from="1716991508610" duration="448000" />
-      <workItem from="1717076656722" duration="4266000" />
+      <workItem from="1717076656722" duration="9155000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -306,7 +306,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717139368736</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="修改了部分问题">
+      <option name="closed" value="true" />
+      <created>1717140455241</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717140455241</updated>
+    </task>
+    <task id="LOCAL-00028" summary="修改了命名问题">
+      <option name="closed" value="true" />
+      <created>1717313838625</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1717313838625</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,6 +346,7 @@
     <MESSAGE value="添加了Test.java用于数据库测试" />
     <MESSAGE value="增添了数据库使用的README文档" />
     <MESSAGE value="修改了部分问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了部分问题" />
+    <MESSAGE value="修改了命名问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了命名问题" />
   </component>
 </project>

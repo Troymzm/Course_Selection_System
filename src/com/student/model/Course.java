@@ -7,13 +7,8 @@ import java.time.LocalTime;
  * @version 1.0
  * 课程实体类
  */
-/**
- * @author zqx
- * @version 2.0
- */
-
 public class Course {
-    private String courseNumber;
+    private String courseNo;
     private String courseName;
     private int credit;
     private String courseDepartment;
@@ -27,20 +22,16 @@ public class Course {
     private String timeStart;
     private String timeEnd;
 
-    public String getCourseDepartment() {
-        return courseDepartment;
+    public Course(String courseNo) {
+        this.courseNo = courseNo;
     }
 
-    public Course(String courseNumber) {
-        this.courseNumber = courseNumber;
+    public String getCourseNo() {
+        return courseNo;
     }
 
-    public String getCourseNumber() {
-        return courseNumber;
-    }
-
-    public void setCourseNumber(String courseNumber) {
-        this.courseNumber = courseNumber;
+    public void setCourseNo(String courseNo) {
+        this.courseNo = courseNo;
     }
 
     public String getCourseName() {
@@ -55,9 +46,12 @@ public class Course {
         return credit;
     }
 
-
     public void setCredit(int credit) {
         this.credit = credit;
+    }
+
+    public String getCourseDepartment() {
+        return courseDepartment;
     }
 
     public void setCourseDepartment(String courseDepartment) {
@@ -126,11 +120,5 @@ public class Course {
 
     public void setTimeEnd(String timeEnd) {
         this.timeEnd = timeEnd;
-    }
-    public LocalTime getLocalTimeStart() {
-        return LocalTime.parse(timeStart);
-    }
-    public LocalTime getLocalTimeEnd() {
-        return LocalTime.parse(timeEnd);
     }
 }
