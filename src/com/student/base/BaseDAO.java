@@ -18,7 +18,7 @@ import java.util.Vector;
 public abstract class BaseDAO {
     protected final DBUtil db = DBUtil.getDBUtil();
 
-    protected ResultSet rs;
+    protected ResultSet resultSet;
 
     protected BaseDAO() {
 
@@ -26,8 +26,8 @@ public abstract class BaseDAO {
 
     protected void destroy() {
         try {
-            if (rs != null) {
-                rs.close();
+            if (resultSet != null) {
+                resultSet.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,12 +42,12 @@ public abstract class BaseDAO {
         Vector<String[]> table = new Vector<String[]>();
         int columcount = 0;
         try {
-            columcount = rs.getMetaData().getColumnCount();
+            columcount = resultSet.getMetaData().getColumnCount();
             String[] data;
-            while (rs.next()) {
+            while (resultSet.next()) {
                 data = new String[columcount];
                 for (int i = 0; i < columcount; i++) {
-                    data[i] = rs.getString(i + 1);
+                    data[i] = resultSet.getString(i + 1);
                 }
                 table.add(data);
             }
@@ -61,12 +61,12 @@ public abstract class BaseDAO {
 
     /**
      *
-     * @Description: query a student by sno.
+     * @Description: query a student by studentNo.
      */
-    public String[][] queryStudent(String sno) {
-        String sql = "select * from student where sno=?";
-        String[] param = {sno};
-        rs = db.executeQuery(sql, param);
+    public String[][] queryStudent(String studentNo) {
+        String sql = "select * from student where studentNo=?";
+        String[] parameter = {studentNo};
+        resultSet = db.executeQuery(sql, parameter);
         return buildResult();
     }
 
@@ -74,21 +74,21 @@ public abstract class BaseDAO {
      *
      * @Description: query a student by username.
      */
-    public String[][] queryUser(String sno) {
+    public String[][] queryUser(String username) {
         String sql = "select * from student where username=?";
-        String[] param = {sno};
-        rs = db.executeQuery(sql, param);
+        String[] parameter = {username};
+        resultSet = db.executeQuery(sql, parameter);
         return buildResult();
     }
 
     /**
      *
-     * @Description: query a course by cno.
+     * @Description: query a course by courseNo.
      */
-    public String[][] queryCourse(String cno) {
-        String sql = "select * from course where cno=?";
-        String[] param = {cno};
-        rs = db.executeQuery(sql, param);
+    public String[][] queryCourse(String courseNo) {
+        String sql = "select * from course where courseNo=?";
+        String[] parameter = {courseNo};
+        resultSet = db.executeQuery(sql, parameter);
         return buildResult();
     }
 

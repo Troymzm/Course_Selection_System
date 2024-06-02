@@ -6,39 +6,40 @@ package com.student.model;
  * 学生实体类
  */
 public class Student {
-    private String sno;
-    private String sname;
-    private String sex;
+    private String studentNo;
+    private String studentName;
+    private String gender;
     private int age;
-    private String sdept;
+    private String studentDepartment;
     private String username;
+    private String password;
 
-    public Student(String sno) {
-        this.sno = sno;
+    public Student(String studentNo) {
+        this.studentNo = studentNo;
     }
 
-    public String getSno() {
-        return sno;
+    public String getStudentNo() {
+        return studentNo;
     }
 
-    public void setSno(String sno) {
-        this.sno = sno;
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
     }
 
-    public String getSname() {
-        return sname;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setSname(String sname) {
-        this.sname = sname;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {
@@ -49,12 +50,12 @@ public class Student {
         this.age = age;
     }
 
-    public String getSdept() {
-        return sdept;
+    public String getStudentDepartment() {
+        return studentDepartment;
     }
 
-    public void setSdept(String sdept) {
-        this.sdept = sdept;
+    public void setStudentDepartment(String studentDepartment) {
+        this.studentDepartment = studentDepartment;
     }
 
     public String getUsername() {
@@ -63,5 +64,13 @@ public class Student {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
