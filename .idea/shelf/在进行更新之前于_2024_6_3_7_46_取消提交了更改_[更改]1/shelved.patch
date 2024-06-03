@@ -1,0 +1,39 @@
+Index: src/com/student/dao/StudentDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.student.dao;\r\n\r\nimport com.student.base.BaseDAO;\r\n\r\nimport java.sql.SQLException;\r\n\r\n/**\r\n * @author mzm\r\n * @version 1.0\r\n * 学生数据访问类\r\n */\r\npublic class StudentDAO extends BaseDAO {\r\n    private static StudentDAO studentDAO = null;\r\n\r\n    public static synchronized StudentDAO getInstance() {\r\n        if (studentDAO == null) {\r\n            studentDAO = new StudentDAO();\r\n        }\r\n        return studentDAO;\r\n    }\r\n\r\n    public String queryForLogin(String username, String password) {\r\n        String result = null;\r\n        String sql = \"select studentNo from student where username=? and password=?\";\r\n        String[] param = {username, getSHA256(password + username)};\r\n        resultSet = db.executeQuery(sql, param);\r\n        try {\r\n            if (resultSet.next()) {\r\n                result = resultSet.getString(\"studentNo\");\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        } finally {\r\n            destroy();\r\n        }\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     *\r\n     * @Description: query optional courses for a student.\r\n     */\r\n    public String[][] queryCourses(String studentNo) {\r\n        String sql =\r\n                \"select * from course where courseNo not in (select courseNo from stu_course where studentNo=?)\";\r\n        String[] parameter = {studentNo};\r\n        resultSet = db.executeQuery(sql, parameter);\r\n        return buildResult();\r\n    }\r\n\r\n    /**\r\n     *\r\n     * @Description: query selected courses for a student.\r\n     */\r\n    public String[][] querySelectedCourse(String studentNo) {\r\n        String sql =\r\n                \"select * from course where courseNo in (select courseNo from stu_course where studentNo=?)\";\r\n        String[] parameter = {studentNo};\r\n        resultSet = db.executeQuery(sql, parameter);\r\n        return buildResult();\r\n    }\r\n\r\n    /**\r\n     *\r\n     * @Description: select course for a student.<br>\r\n     * (studentNo, courseNo) should be checked additionally!\r\n     */\r\n    public void selectCourse(String studentNo, String courseNo) {\r\n        String sql = \"insert into stu_course values (?,?)\";\r\n        String[] parameter = {studentNo, courseNo};\r\n        db.executeUpdate(sql, parameter);\r\n    }\r\n\r\n    /**\r\n     *\r\n     * @Description: drop course for a student.\r\n     * (studentNo, courseNo) should be checked additionally!\r\n     */\r\n    public void dropCourse(String studentNo, String courseNo) {\r\n        String sql = \"delete from stu_course where studentNo=? and courseNo=?\";\r\n        String[] parameter = {studentNo, courseNo};\r\n        db.executeUpdate(sql, parameter);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/student/dao/StudentDAO.java b/src/com/student/dao/StudentDAO.java
+--- a/src/com/student/dao/StudentDAO.java	
++++ b/src/com/student/dao/StudentDAO.java	
+@@ -81,4 +81,10 @@
+         String[] parameter = {studentNo, courseNo};
+         db.executeUpdate(sql, parameter);
+     }
++
++    /**
++     *
++     * @Description: alter password for a student.
++     */
++    
+ }
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-233.15026.9\">\r\n    <data-source name=\"@192.168.139.134\" uuid=\"ea80b4e3-81c8-4da2-93b4-208528707ae8\">\r\n      <database-info product=\"MySQL\" version=\"8.0.37\" jdbc-version=\"4.2\" driver-name=\"MySQL Connector/J\" driver-version=\"mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)\" dbms=\"MYSQL\" exact-version=\"8.0.37\" exact-driver-version=\"8.2\">\r\n        <extra-name-characters>#@</extra-name-characters>\r\n        <identifier-quote-string>`</identifier-quote-string>\r\n        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>\r\n      </database-info>\r\n      <case-sensitivity plain-identifiers=\"lower\" quoted-identifiers=\"lower\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <user-name>819</user-name>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"schema\" qname=\"@\" />\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	
++++ b/.idea/dataSources.local.xml	
+@@ -5,7 +5,6 @@
+       <database-info product="MySQL" version="8.0.37" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.37" exact-driver-version="8.2">
+         <extra-name-characters>#@</extra-name-characters>
+         <identifier-quote-string>`</identifier-quote-string>
+-        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
+       </database-info>
+       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+       <secret-storage>master_key</secret-storage>
