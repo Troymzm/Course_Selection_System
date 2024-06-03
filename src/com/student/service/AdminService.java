@@ -49,4 +49,8 @@ public class AdminService {
     public void deleteCourse(String courseNO) throws BaseDAO.CourseNotFoundException, BaseDAO.CourseSelectedException {
         AdminDAO.getInstance().deleteCourse(courseNO);
     }
+
+    public void resetPassword(String studentNO){
+        AdminDAO.getInstance().resetPassword(studentNO);
+    }
 }
