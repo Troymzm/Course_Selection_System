@@ -107,3 +107,161 @@
     | studentNo | varchar(255) | YES  |     | NULL    |       |
     | courseNo  | varchar(255) | YES  |     | NULL    |       |
     +-----------+--------------+------+-----+---------+-------+
+
+# Service包方法使用说明
+
+###例子
+
+`public void selectCourse(String studentNO,String courseNO) throws NoCourseQualifiedException, CourseTimeConflictException, FullyCourseException, CourseBeenSelectedException`
+
+这是选课方法，使用它时，给选课按钮添加一个动作，使用这个方法。
+
+这个方法可能会抛出异常，要使用多个catch，每一个catch后跟一个处理方法（如弹窗）。
+
+这个方法可能抛出`NoCourseQualifiedException, CourseTimeConflictException, FullyCourseException, CourseBeenSelectedException`这四个异常
+
+`CourseBeenSelectedException`代表该生已经选择这个课程，可以弹出“不可以重复选课”的弹窗提醒。
+
+`FullyCourseException`代表该课程人数已满，可以弹出“课程人数已达上限”的弹窗。
+
+`CourseTimeConflictException`代表该课程与已选择的课时间冲突。
+
+`NoCourseQualifiedException`该异常这里不会出现，不必处理。
+
+## UserService类
+
+`public String StudentQueryLogin(String username, String password) throws LoginFailureException`
+
+这是学生登录方法，传入用户名和密码，若正确则返回学生的学号，以后的方法都是以学号作为代表学生的参数传入。
+
+若错误，则抛出`LoginFailureException`。
+
+可以使用无穷循环来处理登录。
+
+`public void AdminQueryLogin(String username,String password) throws LoginFailureException`
+
+管理员登录方法，传入用户名和密码。（管理员用户名设定为administrator，管理员密码设定为123456）
+
+若错误，则抛出`LoginFailureException`。
+
+## StudentService类
+
+`public String[][] listSelectedCourse(String studentNO) throws NoSelectedCourseException`
+
+已选课程列表方法，传入学号，返回已选课程二维字符串数组。可将其列表在界面上。
+
+若该生还未选课，则抛出异常`NoSelectedCourseException`，可在屏幕区域添加Label提醒没有已选课程。
+
+`public String[][] listUnselectedCourse(String studentNO) throws NoCourseToSelectException`
+
+未选课程列表方法，传入学号，返回未选课程二维字符串数组。
+
+若无未选课程，则抛出异常`NoCourseToSelectException`.
+
+`public String[] queryCourseInformation(String courseNumber) throws NoCourseQualifiedException`
+
+查询某一门课程信息，传入课程号，返回该课程信息字符串数组。
+
+若没有对应课程，则抛出异常`NoCourseQualifiedException`。
+
+`public String[][] queryCourseInformation (String startTime, String endTime) throws NoCourseQualifiedException, InputException`
+
+查询某一时间段的所有课程及其信息，传入时间字符串（格式为XX：XX：XX）。
+
+若时间格式错误或者endTime早于startTime，则抛出`InputException`异常。
+
+若无时间段内的课程则抛出异常`NoCourseQualifiedException`
+
+`public String[][]  queryTeacherCourse(String teacherName) throws NoCourseQualifiedException`
+
+查询某一位老师的课程，输入老师名字，返回该老师的所有课程二维字符串数组。
+
+若无课程，则抛出异常`NoCourseQualifiedException`。
+
+`public String[][] querySemesterSeasonCourse(String semesterSeason) throws NoCourseQualifiedException`
+
+查询某一学期的课程，输入学期，返回该学期的所有课程。
+
+若无课程，则抛出异常`NoCourseQualifiedException`。
+
+`public String[][] querySemesterYearCourse(String semesterYear) throws NoCourseQualifiedException`
+
+查询某一学年的课程，输入学年，返回该学年的所有课程。
+
+若无课程，则抛出异常`NoCourseQualifiedException`。
+
+`public int studentInCourse(String courseNO)`
+
+查询某一课程已被多少人选择，输入课程号，返回人数。
+
+`public void selectCourse(String studentNO,String courseNO) throws NoCourseQualifiedException, CourseTimeConflictException, FullyCourseException, CourseBeenSelectedException`
+
+选课方法，上文以说明。
+
+`public void dropCourse(String studentNO,String courseNO)`
+
+放弃方法，输入学号，课程号。
+
+`public String[] listStudentInformation(String studentNO) throws NoSuchStudentException`
+
+展示学生信息方法，传入学号，返回该学生信息字符串数组。
+
+若无对应学号的学生，则抛出`NoSuchStudentException`
+
+`public void updatePassword(String studentNO,String newPassword) throws InputException`
+
+更改密码方法，输入学号，新密码。（密码为6位数）
+
+若密码不为6位数，则抛出`InputException`。
+
+`public void updateUserName(String studentNO,String newUserName) throws NoSuchStudentException, UsernameExistException`
+
+更改用户名，传入学号，新用户名。
+
+若用户名已存在，则抛出`UsernameExistException`
+
+`NoSuchStudentException`异常不会出现。
+
+## AdminService类
+
+`public String[][] listAllStudent() throws NoStudentException`
+
+所有学生信息列表方法，返回所有学生及其信息二维字符串数组。
+
+若不存在学生，则抛出`NoStudentException`
+
+`public String[][] listAllCourse() throws NoCourseException`
+
+所有课程信息列表方法，返回所有课程及其信息二维字符串数组。
+
+若不存在课程，则抛出`NoCourseException`
+
+`public void addStudent(String[] studentInformation) throws BaseDAO.UserExistException, BaseDAO.StudentExistException`
+
+添加学生方法，输入学生信息字符串数组。
+
+若用户名已存在，则抛出`BaseDAO.UserExistException`
+
+若学号已存在，则抛出`BaseDAO.StudentExistException`
+
+`public void addCourse(String[] courseInformation) throws BaseDAO.CourseExistException`
+
+添加课程方法，输入课程信息字符串数组。
+
+若课程号已存在，则抛出`aseDAO.CourseExistException`
+
+`public void resetPassword(String studentNO)`
+
+重置学生密码方法（重置为000000），输入学号。
+
+`public void deleteStudent(String studentNO) throws BaseDAO.StudentNotFoundException`
+
+删除学生方法，输入学号。
+
+若该学生不存在，则抛出异常`BaseDAO.StudentNotFoundException`
+
+`public void deleteCourse(String courseNO) throws BaseDAO.CourseNotFoundException`
+
+删除课程方法，输入课程号。
+
+若该课程不存在，则抛出`BaseDAO.CourseNotFoundException`
