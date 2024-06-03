@@ -23,7 +23,7 @@ public class AdminDAO extends BaseDAO {
      *
      * @Description: query students who have selected a specific course.
      */
-    public String[][] queryStuWhoSelectCourse(String courseNo) {
+    public String[][] queryStudentWhoSelectCourse(String courseNo) {
         String sql =
                 "select studentNo from course as A, stu_course as B where A.courseNo=B.courseNo and A.courseNo=?";
         String[] parameter = {courseNo};
@@ -88,7 +88,7 @@ public class AdminDAO extends BaseDAO {
             // check if the course exist
             throw new CourseNotFoundException();
         }
-        if (queryStuWhoSelectCourse(courseNo).length != 0) {
+        if (queryStudentWhoSelectCourse(courseNo).length != 0) {
             // check if some student selected the course
             throw new CourseSelectedException();
         }
@@ -135,5 +135,20 @@ public class AdminDAO extends BaseDAO {
         String sql = "delete from student where studentNo=?";
         String[] parameter = {studentNo};
         db.executeUpdate(sql, parameter);
+    }
+
+    /**
+     *
+     * @Description: reset password "000000" for a student.
+     */
+    public void resetPassword(String studentNo) {
+        String sql1 = "select username from student where studentNo=?";
+        String sql2 = "update student set password=? where studentNo=?";
+        String[] parameter1 = {studentNo};
+        resultSet = db.executeQuery(sql1, parameter1);
+        String[][] usernameSet = buildResult();
+        String username = usernameSet[0][0];
+        String[] parameter2 = {getSHA256("000000" + username), studentNo};
+        db.executeUpdate(sql2, parameter2);
     }
 }

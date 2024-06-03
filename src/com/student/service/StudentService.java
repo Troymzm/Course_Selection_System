@@ -183,7 +183,7 @@ public class StudentService {
      * @return 返回选择该课的学生人数
      */
     public int studentInCourse(String courseNO){
-        String[][] studentInCourse = AdminDAO.getInstance().queryStuWhoSelectCourse(courseNO);
+        String[][] studentInCourse = AdminDAO.getInstance().queryStudentWhoSelectCourse(courseNO);
 
         return studentInCourse.length;
     }

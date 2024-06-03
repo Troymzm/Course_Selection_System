@@ -46,6 +46,8 @@
 
 `public void deleteStudent(String studentNo) throws StudentNotFoundException, StudentSelectedCourseException` 删除学号为`studentNo`的学生
 
+`public void resetPassword(String studentNo)` 重置学号为`studentNo`的学生的密码为`000000`
+
 ### 学生操作方法
 
 `public static synchronized StudentDAO getInstance()` 返回一个学生对象
@@ -59,6 +61,10 @@
 `public void selectCourse(String studentNo, String courseNo)` 学号为`studentNo`的学生选课课程编号为`courseNo`的课程
 
 `public void dropCourse(String studentNo, String courseNo)` 学号为`studentNo`的学生退课课程编号为`courseNo`的课程
+
+`public void alterPassword(String studentNo, String newPassword)` 学号为`studentNo`的学生修改密码
+
+`public void alterUsername(String studentNo, String newUsername)` 学号为`studentNo`的学生修改用户名
 
 ## 数据库结构
 

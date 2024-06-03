@@ -22,8 +22,8 @@ public class StudentDAO extends BaseDAO {
     public String queryForLogin(String username, String password) {
         String result = null;
         String sql = "select studentNo from student where username=? and password=?";
-        String[] param = {username, getSHA256(password + username)};
-        resultSet = db.executeQuery(sql, param);
+        String[] parameter = {username, getSHA256(password + username)};
+        resultSet = db.executeQuery(sql, parameter);
         try {
             if (resultSet.next()) {
                 result = resultSet.getString("studentNo");
@@ -79,6 +79,33 @@ public class StudentDAO extends BaseDAO {
     public void dropCourse(String studentNo, String courseNo) {
         String sql = "delete from stu_course where studentNo=? and courseNo=?";
         String[] parameter = {studentNo, courseNo};
+        db.executeUpdate(sql, parameter);
+    }
+
+    /**
+     *
+     * @Description: alter password for a student.
+     */
+    public void alterPassword(String studentNo, String newPassword) {
+        String sql1 = "select username from student where studentNo=?";
+        String sql2 = "update student set password=? where studentNo=?";
+        String[] parameter1 = {studentNo};
+        resultSet = db.executeQuery(sql1, parameter1);
+        String[][] usernameSet = buildResult();
+        String username = usernameSet[0][0];
+        String[] parameter2 = {getSHA256(newPassword + username), studentNo};
+        db.executeUpdate(sql2, parameter2);
+    }
+
+    /**
+     *
+     * @Description: alter username for a student.
+     * newUsername should be checked additionally!
+     */
+    public void alterUsername(String studentNo, String newUsername) {
+
+        String sql = "update student set username=? where studentNo=?";
+        String[] parameter = {newUsername, studentNo};
         db.executeUpdate(sql, parameter);
     }
 }
