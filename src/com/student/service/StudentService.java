@@ -4,7 +4,6 @@ package com.student.service;
 import com.student.dao.AdminDAO;
 import com.student.dao.StudentDAO;
 import com.student.exceptions.studentexceptions.*;
-import com.student.model.Student;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -189,47 +188,54 @@ public class StudentService {
     }
 
     /**
-     * 选课，若时间冲突则抛出异常
-     * @param student
+     *
+     * @param studentNO
      * @param courseNO
      * @throws NoCourseQualifiedException
      * @throws CourseTimeConflictException
      * @throws FullyCourseException
+     * @throws CourseBeenSelectedException
      */
-    public void selectCourse(Student student,String courseNO) throws NoCourseQualifiedException, CourseTimeConflictException, FullyCourseException {
-        String[][] selectedCourse = StudentDAO.getInstance().querySelectedCourse(student.getStudentNo());
+    public void selectCourse(String studentNO,String courseNO) throws NoCourseQualifiedException, CourseTimeConflictException, FullyCourseException, CourseBeenSelectedException {
+        String[][] selectedCourse = StudentDAO.getInstance().querySelectedCourse(studentNO);
         StudentService studentService = new StudentService();
         String[] pointedCourse = studentService.queryCourseInformation(courseNO);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        for(int i = 0;i < selectedCourse.length;i++){
-            //选课与已有的课在同一年度，同一学期
-            if(selectedCourse[i][6].equals(pointedCourse[6]) &&
-                    selectedCourse[i][7].equals(pointedCourse[7])){
-                //选课与已有的课在上课星期上有交叉
-                if(!(Integer.parseInt(pointedCourse[9]) < Integer.parseInt(selectedCourse[i][8]) ||
-                        Integer.parseInt(pointedCourse[8]) > Integer.parseInt(selectedCourse[i][9]))){
-                    //选课与已有的课在上课时间上交叉
-                    if(!(LocalTime.parse(pointedCourse[11], formatter).isBefore(LocalTime.parse(selectedCourse[i][10], formatter)) &&
-                            LocalTime.parse(selectedCourse[i][11], formatter).isBefore(LocalTime.parse(pointedCourse[10], formatter)))){
-                        throw new CourseTimeConflictException();
-                    }
-                }
-            }
-            //课程人数已满
-            if(Integer.parseInt(pointedCourse[12]) == studentService.studentInCourse(courseNO)){
-                throw new FullyCourseException();
+        //判断该课程是否已被选择
+        for(int i = 0; i <selectedCourse.length;i++){
+            if(courseNO.equals(selectedCourse[i][0])){
+                throw new CourseBeenSelectedException();
             }
         }
-        StudentDAO.getInstance().selectCourse(student.getStudentNo(),courseNO);
+        //判断课程人数是否满
+        if(Integer.parseInt(pointedCourse[12]) == studentService.studentInCourse(courseNO)){
+            throw new FullyCourseException();
+        }
+        for(int i = 0;i < selectedCourse.length;i++){
+            //判断选课与已有的课是否在同一年度，同一学期
+            boolean conditionSemester = selectedCourse[i][6].equals(pointedCourse[6]) &&
+                    selectedCourse[i][7].equals(pointedCourse[7]);
+            //判断选课与已有的课在星期上是否有重叠
+            boolean conditionWeek = !(Integer.parseInt(pointedCourse[9]) < Integer.parseInt(selectedCourse[i][8]) ||
+                    Integer.parseInt(pointedCourse[8]) > Integer.parseInt(selectedCourse[i][9]));
+            //判断选课与已有的课在时间上是否有重叠
+            boolean conditionTime = !(LocalTime.parse(pointedCourse[11], formatter).isBefore(LocalTime.parse(selectedCourse[i][10], formatter)) &&
+                    LocalTime.parse(selectedCourse[i][11], formatter).isBefore(LocalTime.parse(pointedCourse[10], formatter)));
+
+            if(conditionSemester && conditionTime && conditionWeek){
+                throw new CourseTimeConflictException();
+            }
+        }
+        StudentDAO.getInstance().selectCourse(studentNO,courseNO);
     }
 
     /**
      *
-     * @param student
+     * @param studentNO
      * @param courseNO
      */
-    public void dropCourse(Student student,String courseNO){
-        StudentDAO.getInstance().dropCourse(student.getStudentNo(),courseNO);
+    public void dropCourse(String studentNO,String courseNO){
+        StudentDAO.getInstance().dropCourse(studentNO,courseNO);
     }
 
     /**
@@ -252,21 +258,31 @@ public class StudentService {
         return allStudent[i];
     }
 
-
-    public void updatePassword(String studentNO,String password){
-
+    //添加密码限制
+    public void updatePassword(String studentNO,String newPassword) throws InputException {
+        if(newPassword.length() != 6){
+            throw new InputException();
+        }
+        StudentDAO.getInstance().alterPassword(studentNO,newPassword);
     }
 
-    public void updateUserName(String studentNO,String updateUserName) throws NoSuchStudentException, UsernameExistException {
+    /**
+     *
+     * @param studentNO
+     * @param newUserName
+     * @throws NoSuchStudentException
+     * @throws UsernameExistException
+     */
+    public void updateUserName(String studentNO,String newUserName) throws NoSuchStudentException, UsernameExistException {
         String[][] allStudent = AdminDAO.getInstance().listAllStudents();
         StudentService studentService = new StudentService();
         String[] PointedStudent = studentService.listStudentInformation(studentNO);
         for(int i = 0; i < allStudent.length;i++){
-            if(allStudent[i][5].equals(updateUserName)){
+            if(allStudent[i][5].equals(newUserName)){
                 throw new UsernameExistException();
             }
         }
-        ///
+        StudentDAO.getInstance().alterUsername(studentNO,newUserName);
     }
 
 }

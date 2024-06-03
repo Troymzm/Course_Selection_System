@@ -108,7 +108,7 @@ public class AdminDAO extends BaseDAO {
             // check if the student exist
             throw new StudentExistException();
         }
-        if (queryUser(parameter[6]).length != 0) {
+        if (queryUser(parameter[5]).length != 0) {
             // check if the username exist
             throw new UserExistException();
         }
