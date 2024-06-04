@@ -3,6 +3,9 @@ package com.student.service;
 import com.student.dao.StudentDAO;
 import com.student.exceptions.enrollmentexceptions.LoginFailureException;
 
+import static com.student.AppConstants.ADMINISTRATOR_PASSWORD;
+import static com.student.AppConstants.ADMINISTRATOR_USERNAME;
+
 public class UserService {
 
     public String StudentQueryLogin(String username, String password) throws LoginFailureException {
@@ -15,7 +18,7 @@ public class UserService {
 
 
     public void AdminQueryLogin(String username,String password) throws LoginFailureException {
-        if(!(username.equals("administrator") && password.equals("123456"))){
+        if(!(username.equals(ADMINISTRATOR_USERNAME) && password.equals(ADMINISTRATOR_PASSWORD))){
             throw new LoginFailureException();
         }
     }

@@ -236,32 +236,60 @@
 
 若不存在课程，则抛出`NoCourseException`
 
-`public void addStudent(String[] studentInformation) throws BaseDAO.UserExistException, BaseDAO.StudentExistException`
+`public void addStudent(String[] studentInformation) throws BaseDAO.UserExistException, BaseDAO.StudentExistException, 
+GenderInputException, EmptyStringException, PasswordInputException, StudentNOInputException, AgeInputException`
 
 添加学生方法，输入学生信息字符串数组。
+
+以下情况均需重新输入。
 
 若用户名已存在，则抛出`BaseDAO.UserExistException`
 
 若学号已存在，则抛出`BaseDAO.StudentExistException`
 
-`public void addCourse(String[] courseInformation) throws BaseDAO.CourseExistException`
+若输入的字符串数组存在字符串为空，则抛出`EmptyStringException`。
+
+若学号格式不正确（PB跟六位数字），则抛出`StudentNOInputException`。
+
+若性别格式不正确（"男"，"女"），则抛出`GenderInputException`。
+
+若年龄格式不正确（0~120的数字），则抛出`AgeInputException`。
+
+若初始化密码不正确（"000000"），则抛出`PasswordInputException`。
+
+`public void addCourse(String[] courseInformation) throws BaseDAO.CourseExistException,
+EmptyStringException,  TimeInputException, SemesterInputException, CreditInputException, YearInputException, WeekInputException, MaxStudentNumberInputException`
 
 添加课程方法，输入课程信息字符串数组。
 
 若课程号已存在，则抛出`aseDAO.CourseExistException`
 
+若输入的字符串数组存在字符串为空，则抛出`EmptyStringException`。
+
+若学分格式不正确（大于0的数字），则抛出`CreditInputException`。
+
+若学年格式不正确（大于2000的数字），则抛出`YearInputException`。
+
+若起止星期格式不正确（是在1~24之间的数字，且前者小于后者），则抛出`WeekInputException`。
+
+若课程容量格式不正确（是在0~2000的数字），则抛出`MaxStudentNumberInputException`。
+
+若起止时间格式不正确（符合时间格式00:00:00，且前者在后者之前），则抛出`TimeInputException`。
+
+若学期格式不正确("春"，"夏"，"秋")，则抛出`SemesterInputException`
+
 `public void resetPassword(String studentNO)`
 
 重置学生密码方法（重置为000000），输入学号。
 
-`public void deleteStudent(String studentNO) throws BaseDAO.StudentNotFoundException`
+`public void deleteStudent(String studentNO) throws BaseDAO.StudentSelectedCourseException, BaseDAO.StudentNotFoundException`
 
-删除学生方法，输入学号。
+删除学生方法，并清除该生选课记录，输入学号。
 
 若该学生不存在，则抛出异常`BaseDAO.StudentNotFoundException`
 
 `public void deleteCourse(String courseNO) throws BaseDAO.CourseNotFoundException`
 
-删除课程方法，输入课程号。
+删除课程方法，并清除学生选择该课程的记录，输入课程号。
 
 若该课程不存在，则抛出`BaseDAO.CourseNotFoundException`

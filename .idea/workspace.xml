@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="完善了service和exceptions包，明日写README">
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理">
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/EmptyStringException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/addstudent/AgeInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/addstudent/GenderInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/addstudent/PasswordInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/addstudent/StudentNOInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/course/CreditInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/course/MaxStudentNumberInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/course/SemesterInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/course/TimeInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/course/WeekInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/course/YearInputException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/exceptions/enrollmentexceptions/LoginFailure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/exceptions/enrollmentexceptions/LoginFailureException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/AppConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/AppConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/StudentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/student/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,13 +81,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -103,7 +118,8 @@
       <workItem from="1717340492440" duration="690000" />
       <workItem from="1717341587276" duration="300000" />
       <workItem from="1717417861510" duration="1266000" />
-      <workItem from="1717420875058" duration="4417000" />
+      <workItem from="1717420875058" duration="4525000" />
+      <workItem from="1717482581442" duration="7756000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -320,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717419114913</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理">
+      <created>1717425405327</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1717425405327</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,17 +369,7 @@
     <MESSAGE value="增添了数据库使用的README文档" />
     <MESSAGE value="修改了部分问题" />
     <MESSAGE value="完善了service和exceptions包，明日写README" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善了service和exceptions包，明日写README" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/student/service/StudentService.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理" />
   </component>
 </project>
