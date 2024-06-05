@@ -12,4 +12,10 @@ public class AppConstants {
     public static final String JDBC_URL = "jdbc:mysql://192.168.139.134:3306/course_selection";
     public static final String JDBC_USERNAME = "819";
     public static final String JDBC_PASSWORD = "819";
+
+    //
+    public static final String STUDENT_INITIAL_PASSWORD = "000000";
+    public static final String ADMINISTRATOR_PASSWORD = "123456";
+    public static final String ADMINISTRATOR_USERNAME = "administrator";
+
 }

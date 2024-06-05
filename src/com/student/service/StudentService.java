@@ -258,7 +258,7 @@ public class StudentService {
         return allStudent[i];
     }
 
-    //添加密码限制
+
     public void updatePassword(String studentNO,String newPassword) throws InputException {
         if(newPassword.length() != 6){
             throw new InputException();
