@@ -2,6 +2,8 @@ package com.student.dao;
 
 import com.student.base.BaseDAO;
 
+import static com.student.AppConstants.STUDENT_INITIAL_PASSWORD;
+
 
 /**
  * @author mzm
@@ -148,7 +150,7 @@ public class AdminDAO extends BaseDAO {
         resultSet = db.executeQuery(sql1, parameter1);
         String[][] usernameSet = buildResult();
         String username = usernameSet[0][0];
-        String[] parameter2 = {getSHA256("000000" + username), studentNo};
+        String[] parameter2 = {getSHA256(STUDENT_INITIAL_PASSWORD + username), studentNo};
         db.executeUpdate(sql2, parameter2);
     }
 }

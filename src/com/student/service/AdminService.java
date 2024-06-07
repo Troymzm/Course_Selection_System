@@ -162,7 +162,20 @@ public class AdminService {
         AdminDAO.getInstance().deleteCourse(courseNO);
     }
 
-    public void resetPassword(String studentNO){
+    public void resetPassword(String studentNO) throws StudentNOInputException {
+
+        String[][] allStudent = AdminDAO.getInstance().listAllStudents();
+        int i;
+        for(i = 0;i < allStudent.length;i++){
+            if(allStudent[i][0].equals(studentNO)){
+                break;
+            }
+        }
+
+        if(i == allStudent.length){
+            throw new StudentNOInputException();
+        }
+
         AdminDAO.getInstance().resetPassword(studentNO);
     }
 }
