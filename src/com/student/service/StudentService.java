@@ -8,6 +8,8 @@ import com.student.exceptions.studentexceptions.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,6 +30,7 @@ public class StudentService {
            throw new NoSelectedCourseException();
         }
 
+        Arrays.sort(selectedCourse, Comparator.comparing(arr -> arr[0]));
         return selectedCourse;
     }
 
@@ -44,6 +47,8 @@ public class StudentService {
         if(unselectedCourse.length == 0){
             throw new NoCourseToSelectException();
         }
+
+        Arrays.sort(unselectedCourse, Comparator.comparing(arr -> arr[0]));
 
         return unselectedCourse;
     }
@@ -100,7 +105,12 @@ public class StudentService {
         if(result.size() == 0){
             throw new NoCourseQualifiedException();
         }
-        return result.toArray(new String[result.size()][]);
+
+        String[][] courseInformation = result.toArray(new String[result.size()][]);
+
+        Arrays.sort(courseInformation, Comparator.comparing(arr -> arr[0]));
+
+        return courseInformation;
     }
 
     /**
@@ -119,7 +129,11 @@ public class StudentService {
         if(result.size() == 0){
             throw new NoCourseQualifiedException();
         }
-        return result.toArray(new String[result.size()][]);
+
+        String[][] courseInformation = result.toArray(new String[result.size()][]);
+        Arrays.sort(courseInformation, Comparator.comparing(arr -> arr[0]));
+
+        return courseInformation;
     }
 
     /**
@@ -139,7 +153,11 @@ public class StudentService {
         if(result.size() == 0){
             throw new NoCourseQualifiedException();
         }
-        return result.toArray(new String[result.size()][]);
+
+        String[][] courseInformation = result.toArray(new String[result.size()][]);
+        Arrays.sort(courseInformation, Comparator.comparing(arr -> arr[0]));
+
+        return courseInformation;
     }
 
     /**
@@ -159,7 +177,11 @@ public class StudentService {
         if(result.size() == 0){
             throw new NoCourseQualifiedException();
         }
-        return result.toArray(new String[result.size()][]);
+
+        String[][] courseInformation = result.toArray(new String[result.size()][]);
+        Arrays.sort(courseInformation, Comparator.comparing(arr -> arr[0]));
+
+        return courseInformation;
     }
 
     /**
