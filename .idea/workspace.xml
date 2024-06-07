@@ -4,20 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="添加了service包和exceptions包">
-      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/studentexceptions/CourseBeenSelectedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_6_3_7_46____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2024_6_3_7_46____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2024_6_3_7_46____1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2024_6_3_7_46____1.xml" afterDir="false" />
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改了命名问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/dao/AdminDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/exceptions/enrollmentexceptions/PasswordErrException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/exceptions/enrollmentexceptions/UsernameException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/exceptions/enrollmentexceptions/LoginFailure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,17 +33,28 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2gBnnfKVmpZSrH7oiSC34Zchotj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\project\Java\Course_Selection_System\src\com\student" />
@@ -89,6 +88,7 @@
       <workItem from="1717340492440" duration="690000" />
       <workItem from="1717341587276" duration="300000" />
       <workItem from="1717417861510" duration="922000" />
+      <workItem from="1717734374413" duration="843000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -314,7 +314,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first submission" />
@@ -323,6 +322,7 @@
     <MESSAGE value="添加了Test.java用于数据库测试" />
     <MESSAGE value="增添了数据库使用的README文档" />
     <MESSAGE value="修改了部分问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了部分问题" />
+    <MESSAGE value="修改了命名问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了命名问题" />
   </component>
 </project>
