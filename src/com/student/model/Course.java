@@ -21,6 +21,7 @@ public class Course {
 
     private String timeStart;
     private String timeEnd;
+    private int maxNumber;
 
     public Course(String courseNo) {
         this.courseNo = courseNo;
@@ -120,5 +121,13 @@ public class Course {
 
     public void setTimeEnd(String timeEnd) {
         this.timeEnd = timeEnd;
+    }
+
+    public int getMaxNumber() {
+        return maxNumber;
+    }
+
+    public void setMaxNumber(int maxNumber) {
+        this.maxNumber = maxNumber;
     }
 }
