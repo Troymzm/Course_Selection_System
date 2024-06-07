@@ -12,6 +12,9 @@ import com.student.exceptions.adminexceptions.addstudent.StudentNOInputException
 import com.student.exceptions.adminexceptions.course.*;
 import com.student.exceptions.studentexceptions.NoSelectedCourseException;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 import static com.student.AppConstants.STUDENT_INITIAL_PASSWORD;
 import static com.student.service.StudentService.isValidTimeFormat;
 
@@ -27,6 +30,9 @@ public class AdminService {
         if(allStudent.length == 0 ){
             throw new NoStudentException();
         }
+
+        Arrays.sort(allStudent, Comparator.comparing(arr -> arr[0]));
+
         return allStudent;
     }
 
@@ -40,6 +46,8 @@ public class AdminService {
         if(allCourse.length == 0 ){
             throw new NoCourseException();
         }
+
+        Arrays.sort(allCourse, Comparator.comparing(arr -> arr[0]));
         return allCourse;
     }
 
@@ -154,7 +162,20 @@ public class AdminService {
         AdminDAO.getInstance().deleteCourse(courseNO);
     }
 
-    public void resetPassword(String studentNO){
+    public void resetPassword(String studentNO) throws StudentNOInputException {
+
+        String[][] allStudent = AdminDAO.getInstance().listAllStudents();
+        int i;
+        for(i = 0;i < allStudent.length;i++){
+            if(allStudent[i][0].equals(studentNO)){
+                break;
+            }
+        }
+
+        if(i == allStudent.length){
+            throw new StudentNOInputException();
+        }
+
         AdminDAO.getInstance().resetPassword(studentNO);
     }
 }

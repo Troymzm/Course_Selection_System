@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="添加了课程人数上限属性">
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改了命名问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,19 +47,16 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/code/ideaJava/Course_Selection_System/src/com/student/view",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.Main.executor": "Run"
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\code\ideaJava\Course_Selection_System\src\com\student\view" />
       <recent name="E:\project\Java\Course_Selection_System\src\com\student" />
       <recent name="E:\project\Java\Course_Selection_System\src\com\student\base" />
       <recent name="E:\code\ideaJava\Course_Selection_System\src" />
@@ -92,7 +88,7 @@
       <workItem from="1717340492440" duration="690000" />
       <workItem from="1717341587276" duration="300000" />
       <workItem from="1717417861510" duration="922000" />
-      <workItem from="1717734374413" duration="3577000" />
+      <workItem from="1717734374413" duration="843000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -302,15 +298,7 @@
       <option name="project" value="LOCAL" />
       <updated>1717139368736</updated>
     </task>
-    <task id="LOCAL-00027" summary="添加了课程人数上限属性">
-      <option name="closed" value="true" />
-      <created>1717736728042</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1717736728042</updated>
-    </task>
-    <option name="localTasksCounter" value="28" />
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +323,6 @@
     <MESSAGE value="增添了数据库使用的README文档" />
     <MESSAGE value="修改了部分问题" />
     <MESSAGE value="修改了命名问题" />
-    <MESSAGE value="添加了课程人数上限属性" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了课程人数上限属性" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了命名问题" />
   </component>
 </project>
