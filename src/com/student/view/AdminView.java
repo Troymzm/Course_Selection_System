@@ -10,8 +10,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.student.service.AdminService;
+import com.student.service.*;
+import com.student.exceptions.adminexceptions.*;
+import com.student.exceptions.adminexceptions.addstudent.*;
+import com.student.exceptions.adminexceptions.course.*;
+import com.student.base.BaseDAO.*;
 public class AdminView extends JFrame{
+    AdminService adminService = new AdminService();
     private JPanel mainPanel;
     private JPanel westPanel;
     private JButton courseButton;
@@ -30,7 +35,7 @@ public class AdminView extends JFrame{
 
         // 创建左侧面板，使用BoxLayout布局管理器
         westPanel = new JPanel();
-        westPanel.setLayout(new BoxLayout(westPanel,BoxLayout.Y_AXIS));
+        westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
         //创建课程面板
         coursePage = new JPanel(new BorderLayout());
@@ -41,12 +46,13 @@ public class AdminView extends JFrame{
 
         //添加课程表至课程页面
         String[] courseColumnNames = {"课程编号", "课程名称", "课程学分", "开课院系", "授课教师", "上课地点", "学年", "季节", "开始周", "结束周", "开始时间", "结束时间", "选课人数上限"};
-        try{
-            String[][] courseList = listAllCourse();
+        String[][] courseList = new String[0][];
+        try {
+            courseList = adminService.listAllCourse();
+        } catch (NoCourseException ec0) {
+            JOptionPane.showMessageDialog(null, "无课程");
         }
-        catch(NoCourseException ec0){
-            JOptionPane.showMessageDialog(null,"无课程");
-        };
+        ;
         DefaultTableModel courseModel = new DefaultTableModel(courseList, courseColumnNames);
         JTable courseTable = new JTable(courseModel);
         JScrollPane courseScrollPane = new JScrollPane(courseTable);
@@ -82,7 +88,7 @@ public class AdminView extends JFrame{
         courseAddTextField[11] = new JTextField(10);
         courseAddLabel[12] = new JLabel("选课人数上限:");
         courseAddTextField[12] = new JTextField(5);
-        for(int i = 0; i <= 12; i++) {
+        for (int i = 0; i <= 12; i++) {
             courseAddPage.add(courseAddLabel[i]);
             courseAddPage.add(courseAddTextField[i]);
         }
@@ -91,34 +97,26 @@ public class AdminView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] addedCourse = JTextFieldReader(courseAddTextField);
-                try{
-                 addCourse(addedCourse);
-                 }
-                catch(BaseDAO.CourseExistException ec1){
-                JOptionPane.showMessageDialog(null,"课程号已存在");
+                try {
+                    adminService.addCourse(addedCourse);
+                } catch (BaseDAO.CourseExistException ec1) {
+                    JOptionPane.showMessageDialog(null, "课程号已存在");
+                } catch (EmptyStringException ec2) {
+                    JOptionPane.showMessageDialog(null, "输入不能为空");
+                } catch (CreditInputException ec3) {
+                    JOptionPane.showMessageDialog(null, "学分输入异常（大于0的数字）");
+                } catch (YearInputException ec4) {
+                    JOptionPane.showMessageDialog(null, "学年输入异常（大于2000的数字）");
+                } catch (WeekInputException ec5) {
+                    JOptionPane.showMessageDialog(null, "起止星期输入异常（是在1~24之间的数字，且前者小于后者）");
+                } catch (MaxStudentNumberInputException ec6) {
+                    JOptionPane.showMessageDialog(null, "课堂容量输入异常（是在0~2000的数字）");
+                } catch (TimeInputException ec7) {
+                    JOptionPane.showMessageDialog(null, "起止时间输入异常（符合时间格式00:00:00，且前者在后者之前）");
+                } catch (SemesterInputException ec8) {
+                    JOptionPane.showMessageDialog(null, "学期输入异常（“春”，“夏”，“秋”）");
                 }
-                catch(EmptyStringException ec2){
-                JOptionPane.showMessageDialog(null,"输入不能为空");
-                }
-                catch(CreditInputException ec3){
-                JOptionPane.showMessageDialog(null,"学分输入异常（大于0的数字）");
-                }
-                catch(YearInputException ec4){
-                JOptionPane.showMessageDialog(null,"学年输入异常（大于2000的数字）");
-                }
-                catch(WeekInputException ec5){
-                JOptionPane.showMessageDialog(null,"起止星期输入异常（是在1~24之间的数字，且前者小于后者）");
-                }
-                catch(MaxStudentNumberInputException ec6){
-                JOptionPane.showMessageDialog(null,"课堂容量输入异常（是在0~2000的数字）");
-                }
-                catch(TimeInputException ec7){
-                JOptionPane.showMessageDialog(null,"起止时间输入异常（符合时间格式00:00:00，且前者在后者之前）");
-                }
-                catch(SemesterInputException ec8){
-                JOptionPane.showMessageDialog(null,"学期输入异常（“春”，“夏”，“秋”）");
-                }
-                JOptionPane.showMessageDialog(null,"课程添加成功");
+                JOptionPane.showMessageDialog(null, "课程添加成功");
             }
         });
         courseAddPage.add(courseAdd);
@@ -135,24 +133,23 @@ public class AdminView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String deletedCourseNumber = courseDeleteTextField.getText();
-            try{
-            deleteCourse(deletedCourseNumber);
-            }
-            catch(BaseDAO.CourseNotFoundException ec9){
-            JOptionPane.showMessageDialog(null,"课程不存在");
-            }
-            JOptionPane.showMessageDialog(null,"课程删除成功");
+                try {
+                    adminService.deleteCourse(deletedCourseNumber);
+                } catch (BaseDao.CourseNotFoundException ec9) {
+                    JOptionPane.showMessageDialog(null, "课程不存在");
+                }
+                JOptionPane.showMessageDialog(null, "课程删除成功");
             }
         });
 
         //创建课程功能按钮
         JButton courseAddButton = new JButton("增加课程");
         JButton courseDeleteButton = new JButton("删除课程");
-        courseAddButton.setSize(70,40);
-        courseDeleteButton.setSize(70,40);
+        courseAddButton.setSize(70, 40);
+        courseDeleteButton.setSize(70, 40);
         //添加按钮至课程页面
         JPanel coursePageSouth = new JPanel();
-        coursePage.add(coursePageSouth,BorderLayout.SOUTH);
+        coursePage.add(coursePageSouth, BorderLayout.SOUTH);
         coursePageSouth.add(courseAddButton);
         coursePageSouth.add(courseDeleteButton);
         // 为按钮添加动作监听器
@@ -178,12 +175,13 @@ public class AdminView extends JFrame{
 
         //添加学生表至课程页面
         String[] studentColumnNames = {"学号", "姓名", "性别", "年龄", "院系", "用户名", "密码"};
-         try{
-             String[][] studentList = listAllStudent();
-         }
-         catch(NoStudentException ec10){
-             JOptionPane.showMessageDialog(null,"无学生");
-         };
+        String[][] studentList = new String[0][];
+        try {
+            studentList = adminService.listAllStudent();
+        } catch (NoStudentException ec10) {
+            JOptionPane.showMessageDialog(null, "无学生");
+        }
+        ;
         DefaultTableModel studentModel = new DefaultTableModel(studentList, studentColumnNames);
         JTable studentTable = new JTable(studentModel);
         JScrollPane studentScrollPane = new JScrollPane(studentTable);
@@ -207,7 +205,7 @@ public class AdminView extends JFrame{
         studentAddTextField[5] = new JTextField(10);
         studentAddLabel[6] = new JLabel("密码");
         studentAddTextField[6] = new JTextField(10);
-        for(int i = 0; i <= 6; i++) {
+        for (int i = 0; i <= 6; i++) {
             studentAddPage.add(studentAddLabel[i]);
             studentAddPage.add(studentAddTextField[i]);
         }
@@ -217,31 +215,24 @@ public class AdminView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] addedStudent = JTextFieldReader(studentAddTextField);
-                try{
-                addStudent(addedStudent);
+                try {
+                    adminService.addStudent(addedStudent);
+                } catch (BaseDAO.UserExistException ec11) {
+                    JOptionPane.showMessageDialog(null, "用户名已存在");
+                } catch (BaseDAO.StudentExistException ec12) {
+                    JOptionPane.showMessageDialog(null, "学号已存在");
+                } catch (EmptyStringException ec13) {
+                    JOptionPane.showMessageDialog(null, "输入不能为空");
+                } catch (StudentNOInputException ec14) {
+                    JOptionPane.showMessageDialog(null, "学号输入异常（PB跟六位数字）");
+                } catch (GenderInputException ec15) {
+                    JOptionPane.showMessageDialog(null, "性别输入异常（“男”，“女”）");
+                } catch (AgeInputException ec16) {
+                    JOptionPane.showMessageDialog(null, "年龄输入异常（0~120的数字）");
+                } catch (PasswordInputException ec17) {
+                    JOptionPane.showMessageDialog(null, "初始化密码不正确（000000）");
                 }
-                catch(BaseDAO.UserExistException ec11){
-                JOptionPane.showMessageDialog(null,"用户名已存在");
-                }
-                catch(BaseDAO.StudentExistException ec12){
-                JOptionPane.showMessageDialog(null,"学号已存在");
-                }
-                catch(EmptyStringException ec13){
-                JOptionPane.showMessageDialog(null,"输入不能为空");
-                }
-                catch(StudentNOInputException ec14){
-                JOptionPane.showMessageDialog(null,"学号输入异常（PB跟六位数字）");
-                }
-                catch(GenderInputException ec15){
-                JOptionPane.showMessageDialog(null,"性别输入异常（“男”，“女”）");
-                }
-                catch(AgeInputException ec16){
-                JOptionPane.showMessageDialog(null,"年龄输入异常（0~120的数字）");
-                }
-                catch(PasswordInputException ec17){
-                JOptionPane.showMessageDialog(null,"初始化密码不正确（000000）");
-                }
-                JOptionPane.showMessageDialog(null,"学生添加成功");
+                JOptionPane.showMessageDialog(null, "学生添加成功");
 
             }
         });
@@ -259,13 +250,12 @@ public class AdminView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String deletedStudentNumber = studentDeleteTextField.getText();
-            try{
-            deleteStudent(deletedStudentNumber);
-            }
-            catch(BaseDAO.StudentNotFoundException ec18){
-            JOptionPane.showMessageDialog(null,"该学生不存在");
-            }
-            JOptionPane.showMessageDialog(null,"学生删除成功");
+                try {
+                    adminService.deleteStudent(deletedStudentNumber);
+                } catch (BaseDAO.StudentNotFoundException ec18) {
+                    JOptionPane.showMessageDialog(null, "该学生不存在");
+                }
+                JOptionPane.showMessageDialog(null, "学生删除成功");
             }
         });
 
@@ -281,13 +271,12 @@ public class AdminView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String passwordChangeStudentNumber = studentPasswordChangeTextField.getText();
-            try{
-            resetPassword(passwordChangeStudentNumber);
-            }
-            catch(BaseDAO.StudentNotFoundException e19){
-            JOptionPane.showMessageDialog(null,"该学生不存在");
-            }
-            JOptionPane.showMessageDialog(null,"密码初始化成功");
+                try {
+                    adminService.resetPassword(passwordChangeStudentNumber);
+                } catch (BaseDAO.StudentNotFoundException e19) {
+                    JOptionPane.showMessageDialog(null, "该学生不存在");
+                }
+                JOptionPane.showMessageDialog(null, "密码初始化成功");
             }
         });
 
@@ -295,12 +284,12 @@ public class AdminView extends JFrame{
         JButton studentAddButton = new JButton("增加学生");
         JButton studentDeleteButton = new JButton("删除学生");
         JButton studentPasswordChangeButton = new JButton("初始化密码");
-        studentAddButton.setSize(70,40);
-        studentDeleteButton.setSize(70,40);
-        studentPasswordChangeButton.setSize(70,40);
+        studentAddButton.setSize(70, 40);
+        studentDeleteButton.setSize(70, 40);
+        studentPasswordChangeButton.setSize(70, 40);
         //添加按钮至学生页面
         JPanel studentPageSouth = new JPanel();
-        studentPage.add(studentPageSouth,BorderLayout.SOUTH);
+        studentPage.add(studentPageSouth, BorderLayout.SOUTH);
         studentPageSouth.add(studentAddButton);
         studentPageSouth.add(studentDeleteButton);
         studentPageSouth.add(studentPasswordChangeButton);
@@ -349,7 +338,7 @@ public class AdminView extends JFrame{
         //将面板添加到主面板中
         JPanel nullPanel = new JPanel();
         mainPanel.add(westPanel, BorderLayout.WEST);
-        mainPanel.add(nullPanel,BorderLayout.CENTER);
+        mainPanel.add(nullPanel, BorderLayout.CENTER);
 
         // 将主面板添加到窗口
         add(mainPanel);
