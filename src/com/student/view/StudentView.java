@@ -21,12 +21,14 @@ public class StudentView extends JFrame {
     private JPanel page1, page2, page3;
     private DefaultTableModel courseTableModel; // 用于课程信息表格的模型
     private JTextField searchTextField; // 用于搜索课程的文本框
+    private String studentNO;
 
-    public StudentView() {
+    public StudentView(String studentNO) {
+        this.studentNO = studentNO;
         // 设置窗口标题和关闭操作
-        setTitle("studentviewtest");
+        setTitle("学生界面");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 750);
+        setSize(1200, 750);
         setLocationRelativeTo(null); // 居中显示窗口
 
         // 创建主面板，使用BorderLayout布局管理器
@@ -81,8 +83,7 @@ public class StudentView extends JFrame {
     }
     private JPanel createSchedulePage() {
         JPanel panel = new JPanel();
-        String studentNO = "PB123456";
-        String[] column = {"课程号", "课程名", "学分", "老师", "上课地点", "起始周", "终止周", "开始时间", "结束时间", "最大容量", "操作"};// 添加了"操作"列
+        String[] column = {"课程号", "课程名", "学分", "开课院系","老师", "上课地点", "起始周", "终止周", "开始时间", "结束时间", "最大容量", "操作"};// 添加了"操作"列
 
         try {
             StudentService studentService = new StudentService();
@@ -144,8 +145,7 @@ public class StudentView extends JFrame {
     private JPanel createCourseSelectionPage() {
         JPanel panel = new JPanel(new BorderLayout());
         /* 初始化课程信息表格模型 */
-        String studentNO = "PB123456";
-        String[] column = {"课程号", "课程名", "学分", "老师", "上课地点", "起始周", "终止周", "开始时间", "结束时间", "最大容量", "操作"};
+        String[] column = {"课程号", "课程名", "学分","开课院系","老师", "上课地点","学年","学期","起始周", "终止周", "开始时间", "结束时间", "最大容量"};
         StudentService studentService = new StudentService();
         try{
             String[][] courses = studentService.listUnselectedCourse(studentNO);
@@ -317,7 +317,6 @@ public class StudentView extends JFrame {
     private JPanel createPersonalInfoPage() {
         JPanel panel = new JPanel(new GridBagLayout());
         JButton modifyInfoButton = new JButton("修改信息");
-        String studentNO = "PB123456";
         StudentService studentService = new StudentService();
         try {
             String[] studentInformation = {"学号", "姓名", "性别", "年龄", "院系","用户名"}; // 初始化空数据
@@ -391,13 +390,5 @@ public class StudentView extends JFrame {
         mainPanel.revalidate(); // 重新验证UI
         mainPanel.repaint(); // 重绘UI
     }
-    public static void main(String[] args) {
-        // 在事件分发线程中创建和显示窗口
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new StudentView().setVisible(true);
-            }
-        });
-    }
+
 }

@@ -1,20 +1,23 @@
 package com.student.view;
 
-/**
- * @author mzm
- * @version 1.0
- * 管理员界面
- */
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import com.student.base.BaseDAO;
 import com.student.service.*;
 import com.student.exceptions.adminexceptions.*;
 import com.student.exceptions.adminexceptions.addstudent.*;
 import com.student.exceptions.adminexceptions.course.*;
 import com.student.base.BaseDAO.*;
+
+/**
+ * @author mzm
+ * @version 1.0
+ * 管理员界面
+ */
+
 public class AdminView extends JFrame{
     AdminService adminService = new AdminService();
     private JPanel mainPanel;
@@ -23,7 +26,7 @@ public class AdminView extends JFrame{
     private JButton studentButton;
     private JPanel coursePage;
     private JPanel studentPage;
-    public void View() {
+    public AdminView() {
         // 设置窗口标题和关闭操作
         setTitle("管理员界面");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +56,12 @@ public class AdminView extends JFrame{
             JOptionPane.showMessageDialog(null, "无课程");
         }
         ;
-        DefaultTableModel courseModel = new DefaultTableModel(courseList, courseColumnNames);
+        DefaultTableModel courseModel = new DefaultTableModel(courseList, courseColumnNames){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // 使所有单元格都不可编辑
+            }
+        };
         JTable courseTable = new JTable(courseModel);
         JScrollPane courseScrollPane = new JScrollPane(courseTable);
         coursePage.add(courseScrollPane, BorderLayout.CENTER);
@@ -82,9 +90,9 @@ public class AdminView extends JFrame{
         courseAddTextField[8] = new JTextField(5);
         courseAddLabel[9] = new JLabel("结束周:");
         courseAddTextField[9] = new JTextField(5);
-        courseAddLabel[10] = new JLabel("结束时间:");
+        courseAddLabel[10] = new JLabel("开始时间:");
         courseAddTextField[10] = new JTextField(10);
-        courseAddLabel[11] = new JLabel("课程名:");
+        courseAddLabel[11] = new JLabel("结束时间:");
         courseAddTextField[11] = new JTextField(10);
         courseAddLabel[12] = new JLabel("选课人数上限:");
         courseAddTextField[12] = new JTextField(5);
@@ -99,6 +107,7 @@ public class AdminView extends JFrame{
                 String[] addedCourse = JTextFieldReader(courseAddTextField);
                 try {
                     adminService.addCourse(addedCourse);
+                    JOptionPane.showMessageDialog(null, "课程添加成功");
                 } catch (BaseDAO.CourseExistException ec1) {
                     JOptionPane.showMessageDialog(null, "课程号已存在");
                 } catch (EmptyStringException ec2) {
@@ -116,7 +125,6 @@ public class AdminView extends JFrame{
                 } catch (SemesterInputException ec8) {
                     JOptionPane.showMessageDialog(null, "学期输入异常（“春”，“夏”，“秋”）");
                 }
-                JOptionPane.showMessageDialog(null, "课程添加成功");
             }
         });
         courseAddPage.add(courseAdd);
@@ -135,10 +143,12 @@ public class AdminView extends JFrame{
                 String deletedCourseNumber = courseDeleteTextField.getText();
                 try {
                     adminService.deleteCourse(deletedCourseNumber);
-                } catch (BaseDao.CourseNotFoundException ec9) {
+                    JOptionPane.showMessageDialog(null, "课程删除成功");
+                } catch (BaseDAO.CourseNotFoundException ec9) {
                     JOptionPane.showMessageDialog(null, "课程不存在");
+                } catch (CourseSelectedException ex) {
+                    throw new RuntimeException(ex);
                 }
-                JOptionPane.showMessageDialog(null, "课程删除成功");
             }
         });
 
@@ -174,15 +184,27 @@ public class AdminView extends JFrame{
         studentPage.add(studentLabel, BorderLayout.NORTH);
 
         //添加学生表至课程页面
-        String[] studentColumnNames = {"学号", "姓名", "性别", "年龄", "院系", "用户名", "密码"};
+        String[] studentColumnNames = {"学号", "姓名", "性别", "年龄", "院系", "用户名"};
         String[][] studentList = new String[0][];
         try {
             studentList = adminService.listAllStudent();
         } catch (NoStudentException ec10) {
             JOptionPane.showMessageDialog(null, "无学生");
+        };
+        String[][] showedStudentList = new String[studentList.length][6];
+        for(int i = 0; i < showedStudentList.length; i++){
+            for(int j = 0; j < 6; j++){
+                showedStudentList[i][j] = studentList[i][j];
+            }
         }
+
         ;
-        DefaultTableModel studentModel = new DefaultTableModel(studentList, studentColumnNames);
+        DefaultTableModel studentModel = new DefaultTableModel(showedStudentList, studentColumnNames){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // 使所有单元格都不可编辑
+            }
+        };;
         JTable studentTable = new JTable(studentModel);
         JScrollPane studentScrollPane = new JScrollPane(studentTable);
         studentPage.add(studentScrollPane, BorderLayout.CENTER);
@@ -217,6 +239,7 @@ public class AdminView extends JFrame{
                 String[] addedStudent = JTextFieldReader(studentAddTextField);
                 try {
                     adminService.addStudent(addedStudent);
+                    JOptionPane.showMessageDialog(null, "学生添加成功");
                 } catch (BaseDAO.UserExistException ec11) {
                     JOptionPane.showMessageDialog(null, "用户名已存在");
                 } catch (BaseDAO.StudentExistException ec12) {
@@ -232,8 +255,6 @@ public class AdminView extends JFrame{
                 } catch (PasswordInputException ec17) {
                     JOptionPane.showMessageDialog(null, "初始化密码不正确（000000）");
                 }
-                JOptionPane.showMessageDialog(null, "学生添加成功");
-
             }
         });
         studentAddPage.add(studentAdd);
@@ -252,10 +273,12 @@ public class AdminView extends JFrame{
                 String deletedStudentNumber = studentDeleteTextField.getText();
                 try {
                     adminService.deleteStudent(deletedStudentNumber);
+                    JOptionPane.showMessageDialog(null, "学生删除成功");
                 } catch (BaseDAO.StudentNotFoundException ec18) {
                     JOptionPane.showMessageDialog(null, "该学生不存在");
+                } catch (StudentSelectedCourseException ex) {
+                    throw new RuntimeException(ex);
                 }
-                JOptionPane.showMessageDialog(null, "学生删除成功");
             }
         });
 
@@ -273,10 +296,10 @@ public class AdminView extends JFrame{
                 String passwordChangeStudentNumber = studentPasswordChangeTextField.getText();
                 try {
                     adminService.resetPassword(passwordChangeStudentNumber);
-                } catch (BaseDAO.StudentNotFoundException e19) {
-                    JOptionPane.showMessageDialog(null, "该学生不存在");
+                    JOptionPane.showMessageDialog(null, "密码初始化成功");
+                } catch (StudentNOInputException ex) {
+                    JOptionPane.showMessageDialog(null, "学号输入错误");
                 }
-                JOptionPane.showMessageDialog(null, "密码初始化成功");
             }
         });
 
@@ -357,4 +380,5 @@ public class AdminView extends JFrame{
             texts[i] = textFields[i].getText();
         }
         return texts;
-    }}
+    }
+}

@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="添加了学生登录界面">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ea80b4e3-81c8-4da2-93b4-208528707ae8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ea80b4e3-81c8-4da2-93b4-208528707ae8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/view/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/view/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/view/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/view/StudentView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +58,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true",
+    "应用程序.AdminView.executor": "Run",
+    "应用程序.LoginView.executor": "Run",
     "应用程序.StudentView.executor": "Run"
   }
 }]]></component>
@@ -110,6 +117,8 @@
       <workItem from="1717341587276" duration="300000" />
       <workItem from="1717417861510" duration="922000" />
       <workItem from="1717734374413" duration="843000" />
+      <workItem from="1717823486501" duration="72000" />
+      <workItem from="1717823568086" duration="4447000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -335,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717814958857</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="添加了学生登录界面">
+      <option name="closed" value="true" />
+      <created>1717822671660</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1717822671660</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
