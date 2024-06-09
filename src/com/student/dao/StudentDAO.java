@@ -96,16 +96,4 @@ public class StudentDAO extends BaseDAO {
         String[] parameter2 = {getSHA256(newPassword + username), studentNo};
         db.executeUpdate(sql2, parameter2);
     }
-
-    /**
-     *
-     * @Description: alter username for a student.
-     * newUsername should be checked additionally!
-     */
-    public void alterUsername(String studentNo, String newUsername) {
-
-        String sql = "update student set username=? where studentNo=?";
-        String[] parameter = {newUsername, studentNo};
-        db.executeUpdate(sql, parameter);
-    }
 }

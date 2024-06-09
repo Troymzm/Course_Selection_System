@@ -287,24 +287,4 @@ public class StudentService {
         }
         StudentDAO.getInstance().alterPassword(studentNO,newPassword);
     }
-
-    /**
-     *
-     * @param studentNO
-     * @param newUserName
-     * @throws NoSuchStudentException
-     * @throws UsernameExistException
-     */
-    public void updateUserName(String studentNO,String newUserName) throws NoSuchStudentException, UsernameExistException {
-        String[][] allStudent = AdminDAO.getInstance().listAllStudents();
-        StudentService studentService = new StudentService();
-        String[] PointedStudent = studentService.listStudentInformation(studentNO);
-        for(int i = 0; i < allStudent.length;i++){
-            if(allStudent[i][5].equals(newUserName)){
-                throw new UsernameExistException();
-            }
-        }
-        StudentDAO.getInstance().alterUsername(studentNO,newUserName);
-    }
-
 }

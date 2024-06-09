@@ -21,6 +21,7 @@ public class LoginView extends JFrame {
     public LoginView() {
         // 设置窗口标题
         setTitle("登录界面");
+        setSize(400,300);
         // 设置窗口关闭操作
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 设置窗口布局

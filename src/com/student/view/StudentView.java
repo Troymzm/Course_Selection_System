@@ -358,21 +358,7 @@ public class StudentView extends JFrame {
             String[] options = {"修改用户名", "修改密码"};
             int choice = JOptionPane.showOptionDialog(null, "请选择要修改的信息", "修改信息", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             if (choice == 0) {
-                // 选择修改用户名
-                String newUsername = JOptionPane.showInputDialog(null, "请输入新的用户名:");
-                if (newUsername != null && !newUsername.isEmpty()) {
-                    // 在这里添加修改用户名的逻辑处理
-                    try {
-                        studentService.updateUserName(studentNO, newUsername);
-                    } catch (UsernameExistException e1) {
-                        JOptionPane.showMessageDialog(null, "该用户名已存在");
-                    } catch (NoSuchStudentException e2) {
-                        JOptionPane.showMessageDialog(null, "该学生不存在");
-                    }finally{}
-                    JOptionPane.showMessageDialog(null, "新的用户名为：" + newUsername);
-                } else {
-                    JOptionPane.showMessageDialog(null, "请输入有效的用户名");
-                }
+
             } else if (choice == 1) {
                 // 选择修改密码
                 String newPassword = JOptionPane.showInputDialog(null, "请输入新的密码:");

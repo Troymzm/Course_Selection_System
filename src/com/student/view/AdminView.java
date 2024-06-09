@@ -166,6 +166,10 @@ public class AdminView extends JFrame{
             }
         });
 
+        //创建课程信息界面
+        JPanel courseInformationPage = new JPanel();
+
+
         //创建课程功能按钮
         JButton courseAddButton = new JButton("增加课程");
         JButton courseDeleteButton = new JButton("删除课程");
