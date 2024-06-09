@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="给resetPassword添加了异常">
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="补充了课程中的学生的方法">
       <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/NoStudentSelect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -329,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717425405327</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="补充了课程中的学生的方法">
+      <created>1717932099572</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1717932099572</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,6 +363,7 @@
     <MESSAGE value="修改了部分问题" />
     <MESSAGE value="完善了service和exceptions包，明日写README" />
     <MESSAGE value="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理" />
-    <option name="LAST_COMMIT_MESSAGE" value="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理" />
+    <MESSAGE value="补充了课程中的学生的方法" />
+    <option name="LAST_COMMIT_MESSAGE" value="补充了课程中的学生的方法" />
   </component>
 </project>
