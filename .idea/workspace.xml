@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="添加了学生登录界面">
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="给resetPassword添加了异常">
+      <change afterPath="$PROJECT_DIR$/src/com/student/exceptions/adminexceptions/NoStudentSelect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/AdminService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -35,33 +44,19 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
   <component name="ProjectId" id="2gBnnfKVmpZSrH7oiSC34Zchotj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.AdminView.executor": "Run",
-    "应用程序.LoginView.executor": "Run",
-    "应用程序.Main.executor": "Run",
-    "应用程序.StudentView.executor": "Run"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\project\Java\Course_Selection_System\src\com\student" />
@@ -73,24 +68,17 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="StudentView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.student.view.StudentView" />
-      <module name="Course_Selection_System" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.student.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.StudentView" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -114,13 +102,10 @@
       <workItem from="1717076656722" duration="4266000" />
       <workItem from="1717340492440" duration="690000" />
       <workItem from="1717341587276" duration="300000" />
-      <workItem from="1717417861510" duration="922000" />
-      <workItem from="1717734374413" duration="843000" />
-      <workItem from="1717823486501" duration="72000" />
-      <workItem from="1717823568086" duration="4447000" />
-      <workItem from="1717850554179" duration="21000" />
-      <workItem from="1717862297512" duration="1235000" />
-      <workItem from="1717903791525" duration="6864000" />
+      <workItem from="1717417861510" duration="1266000" />
+      <workItem from="1717420875058" duration="4525000" />
+      <workItem from="1717482581442" duration="7756000" />
+      <workItem from="1717776294887" duration="326000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -330,55 +315,21 @@
       <option name="project" value="LOCAL" />
       <updated>1717139368736</updated>
     </task>
-    <task id="LOCAL-00027" summary="添加了课程人数上限属性">
-      <option name="closed" value="true" />
-      <created>1717777888136</created>
+    <task id="LOCAL-00027" summary="完善了service和exceptions包，明日写README">
+      <created>1717419114913</created>
       <option name="number" value="00027" />
       <option name="presentableId" value="LOCAL-00027" />
       <option name="project" value="LOCAL" />
-      <updated>1717777888136</updated>
+      <updated>1717419114913</updated>
     </task>
-    <task id="LOCAL-00028" summary="添加了学生登录界面">
-      <option name="closed" value="true" />
-      <created>1717814958857</created>
+    <task id="LOCAL-00028" summary="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理">
+      <created>1717425405327</created>
       <option name="number" value="00028" />
       <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1717814958857</updated>
+      <updated>1717425405327</updated>
     </task>
-    <task id="LOCAL-00029" summary="添加了学生登录界面">
-      <option name="closed" value="true" />
-      <created>1717822671660</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1717822671660</updated>
-    </task>
-    <task id="LOCAL-00030" summary="添加了学生登录界面">
-      <option name="closed" value="true" />
-      <created>1717850462799</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1717850462800</updated>
-    </task>
-    <task id="LOCAL-00031" summary="添加了学生登录界面">
-      <option name="closed" value="true" />
-      <created>1717923289881</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1717923289881</updated>
-    </task>
-    <task id="LOCAL-00032" summary="添加了学生登录界面">
-      <option name="closed" value="true" />
-      <created>1717924910784</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1717924910784</updated>
-    </task>
-    <option name="localTasksCounter" value="33" />
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,6 +345,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first submission" />
@@ -402,9 +354,8 @@
     <MESSAGE value="添加了Test.java用于数据库测试" />
     <MESSAGE value="增添了数据库使用的README文档" />
     <MESSAGE value="修改了部分问题" />
-    <MESSAGE value="修改了命名问题" />
-    <MESSAGE value="添加了课程人数上限属性" />
-    <MESSAGE value="添加了学生登录界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了学生登录界面" />
+    <MESSAGE value="完善了service和exceptions包，明日写README" />
+    <MESSAGE value="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="README已补充，AdminService里deleteStudent与deleteCourse方法有问题待处理" />
   </component>
 </project>

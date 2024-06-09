@@ -51,6 +51,21 @@ public class AdminService {
         return allCourse;
     }
 
+    /**
+     *
+     * @param courseNO
+     * @return 返回选择该课的学生二维字符串数组
+     * @throws NoStudentSelect
+     */
+    public String[][] listStudentInCourse(String courseNO) throws NoStudentSelect {
+        String[][] studentInCourse = AdminDAO.getInstance().queryStudentWhoSelectCourse(courseNO);
+
+        if(studentInCourse.length == 0){
+            throw new NoStudentSelect();
+        }
+         return studentInCourse;
+    }
+
     public void addStudent(String[] studentInformation) throws BaseDAO.UserExistException, BaseDAO.StudentExistException, GenderInputException, EmptyStringException, PasswordInputException, StudentNOInputException, AgeInputException {
 
         //输入信息不为空检测
