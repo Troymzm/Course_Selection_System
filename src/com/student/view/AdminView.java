@@ -22,6 +22,7 @@ public class AdminView extends JFrame{
     AdminService adminService = new AdminService();
     private JPanel mainPanel;
     private JPanel westPanel;
+    private JPanel nullPanel;
     private JButton courseButton;
     private JButton studentButton;
     private JPanel coursePage;
@@ -42,6 +43,9 @@ public class AdminView extends JFrame{
         westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
+        //创建空面板，用于填充
+        nullPanel = new JPanel();
+
         //创建课程面板
         coursePage = new JPanel(new BorderLayout());
 
@@ -61,7 +65,7 @@ public class AdminView extends JFrame{
         DefaultTableModel courseModel = new DefaultTableModel(courseList, courseColumnNames){
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // 使所有单元格都不可编辑
+                return false;
             }
         };
         JTable courseTable = new JTable(courseModel);
@@ -112,7 +116,12 @@ public class AdminView extends JFrame{
                     JOptionPane.showMessageDialog(null, "课程添加成功");
                     try {
                         courseList = adminService.listAllCourse();
-                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ));
+                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ){
+                            @Override
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        });
                     } catch (NoCourseException ec0) {
                         JOptionPane.showMessageDialog(null, "无课程");
                     }
@@ -141,9 +150,9 @@ public class AdminView extends JFrame{
         JPanel courseDeletePage = new JPanel();
         JLabel courseDeleteLabel = new JLabel("请输入课程编号");
         JTextField courseDeleteTextField = new JTextField(10);
+        JButton courseDelete = new JButton("确认");
         courseDeletePage.add(courseDeleteLabel);
         courseDeletePage.add(courseDeleteTextField);
-        JButton courseDelete = new JButton("确认");
         courseDeletePage.add(courseDelete);
         courseDelete.addActionListener(new ActionListener() {
             @Override
@@ -154,7 +163,12 @@ public class AdminView extends JFrame{
                     JOptionPane.showMessageDialog(null, "课程删除成功");
                     try {
                         courseList = adminService.listAllCourse();
-                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ));
+                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ){
+                            @Override
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        });
                     } catch (NoCourseException ec0) {
                         JOptionPane.showMessageDialog(null, "无课程");
                     }
@@ -166,20 +180,33 @@ public class AdminView extends JFrame{
             }
         });
 
-        //创建课程信息界面
-        JPanel courseInformationPage = new JPanel();
+        //创建课程选择信息界面
+        JPanel courseInformationPage = new JPanel(new BorderLayout());
+        JPanel courseInformationPageNorth = new JPanel();
+        JLabel courseInformationLabel = new JLabel("请输入课程编号");
+        JTextField courseInformationTextField = new JTextField(10);
+        JButton courseInformation = new JButton("确认");
+        courseInformationPage.add(courseInformationPageNorth,BorderLayout.NORTH);
+        courseInformationPage.add(nullPanel,BorderLayout.CENTER);
+        courseInformationPageNorth.add(courseInformationLabel);
+        courseInformationPageNorth.add(courseInformationTextField);
+        courseInformationPageNorth.add(courseInformation);
+
 
 
         //创建课程功能按钮
         JButton courseAddButton = new JButton("增加课程");
         JButton courseDeleteButton = new JButton("删除课程");
+        JButton courseInformationButton = new JButton("课程选择情况");
         courseAddButton.setSize(70, 40);
         courseDeleteButton.setSize(70, 40);
+        courseInformationButton.setSize(70, 40);
         //添加按钮至课程页面
         JPanel coursePageSouth = new JPanel();
         coursePage.add(coursePageSouth, BorderLayout.SOUTH);
         coursePageSouth.add(courseAddButton);
         coursePageSouth.add(courseDeleteButton);
+        coursePageSouth.add(courseInformationButton);
         // 为按钮添加动作监听器
         courseAddButton.addActionListener(new ActionListener() {
             @Override
@@ -191,6 +218,12 @@ public class AdminView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 ShowPageInCenter(courseDeletePage);
+            }
+        });
+        courseInformationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ShowPageInCenter(courseInformationPage);
             }
         });
 
@@ -216,7 +249,6 @@ public class AdminView extends JFrame{
             }
         }
 
-        ;
         DefaultTableModel studentModel = new DefaultTableModel(showedStudentList, studentColumnNames){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -260,7 +292,12 @@ public class AdminView extends JFrame{
                     JOptionPane.showMessageDialog(null, "学生添加成功");
                     try {
                         studentList = adminService.listAllStudent();
-                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ));
+                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ){
+                            @Override
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        });
                     }
                     catch (NoStudentException ec10){
                         JOptionPane.showMessageDialog(null, "无学生");
@@ -301,7 +338,12 @@ public class AdminView extends JFrame{
                     JOptionPane.showMessageDialog(null, "学生删除成功");
                     try {
                         studentList = adminService.listAllStudent();
-                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ));
+                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ){
+                            @Override
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        });
                     }
                     catch (NoStudentException ec10){
                         JOptionPane.showMessageDialog(null, "无学生");
@@ -391,7 +433,6 @@ public class AdminView extends JFrame{
         });
 
         //将面板添加到主面板中
-        JPanel nullPanel = new JPanel();
         mainPanel.add(westPanel, BorderLayout.WEST);
         mainPanel.add(nullPanel, BorderLayout.CENTER);
 
