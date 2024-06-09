@@ -105,10 +105,4 @@ public class LoginView extends JFrame {
             JOptionPane.showMessageDialog(null,"登录失败");
         }
         }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LoginView().setVisible(true);
-            }
-        });}}
+   }
