@@ -107,7 +107,7 @@ public class AdminService {
         if(!(courseInformation[6].matches("^\\d+$"))){
             throw new YearInputException();
         }
-        if(Integer.parseInt(courseInformation[2]) < 2000){
+        if(Integer.parseInt(courseInformation[6]) < 2000){
             throw new YearInputException();
         }
 
@@ -115,10 +115,10 @@ public class AdminService {
         if(!(courseInformation[8].matches("^\\d+$") && courseInformation[9].matches("^\\d+$"))){
             throw new WeekInputException();
         }
-        if(Integer.parseInt(courseInformation[8]) < 0 || Integer.parseInt(courseInformation[8]) > 24){
+        if(Integer.parseInt(courseInformation[8]) <= 0 || Integer.parseInt(courseInformation[8]) > 24){
             throw new WeekInputException();
         }
-        if(Integer.parseInt(courseInformation[9]) < 0 || Integer.parseInt(courseInformation[9]) > 24){
+        if(Integer.parseInt(courseInformation[9]) <= 0 || Integer.parseInt(courseInformation[9]) > 24){
             throw new WeekInputException();
         }
         if(Integer.parseInt(courseInformation[8]) > Integer.parseInt(courseInformation[9])){
@@ -129,7 +129,7 @@ public class AdminService {
         if(!(courseInformation[12].matches("^\\d+$"))){
             throw new MaxStudentNumberInputException();
         }
-        if(Integer.parseInt(courseInformation[12]) < 0 || Integer.parseInt(courseInformation[12]) > 2000){
+        if(Integer.parseInt(courseInformation[12]) <= 0 || Integer.parseInt(courseInformation[12]) > 2000){
             throw new MaxStudentNumberInputException();
         }
 

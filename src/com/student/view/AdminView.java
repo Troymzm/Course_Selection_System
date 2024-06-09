@@ -26,6 +26,8 @@ public class AdminView extends JFrame{
     private JButton studentButton;
     private JPanel coursePage;
     private JPanel studentPage;
+    private String[][] courseList;
+    private String[][] studentList;
     public AdminView() {
         // 设置窗口标题和关闭操作
         setTitle("管理员界面");
@@ -49,7 +51,7 @@ public class AdminView extends JFrame{
 
         //添加课程表至课程页面
         String[] courseColumnNames = {"课程编号", "课程名称", "课程学分", "开课院系", "授课教师", "上课地点", "学年", "季节", "开始周", "结束周", "开始时间", "结束时间", "选课人数上限"};
-        String[][] courseList = new String[0][];
+        courseList = new String[0][];
         try {
             courseList = adminService.listAllCourse();
         } catch (NoCourseException ec0) {
@@ -108,6 +110,12 @@ public class AdminView extends JFrame{
                 try {
                     adminService.addCourse(addedCourse);
                     JOptionPane.showMessageDialog(null, "课程添加成功");
+                    try {
+                        courseList = adminService.listAllCourse();
+                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ));
+                    } catch (NoCourseException ec0) {
+                        JOptionPane.showMessageDialog(null, "无课程");
+                    }
                 } catch (BaseDAO.CourseExistException ec1) {
                     JOptionPane.showMessageDialog(null, "课程号已存在");
                 } catch (EmptyStringException ec2) {
@@ -144,6 +152,12 @@ public class AdminView extends JFrame{
                 try {
                     adminService.deleteCourse(deletedCourseNumber);
                     JOptionPane.showMessageDialog(null, "课程删除成功");
+                    try {
+                        courseList = adminService.listAllCourse();
+                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ));
+                    } catch (NoCourseException ec0) {
+                        JOptionPane.showMessageDialog(null, "无课程");
+                    }
                 } catch (BaseDAO.CourseNotFoundException ec9) {
                     JOptionPane.showMessageDialog(null, "课程不存在");
                 } catch (CourseSelectedException ex) {
@@ -185,12 +199,12 @@ public class AdminView extends JFrame{
 
         //添加学生表至课程页面
         String[] studentColumnNames = {"学号", "姓名", "性别", "年龄", "院系", "用户名"};
-        String[][] studentList = new String[0][];
+        studentList = new String[0][];
         try {
             studentList = adminService.listAllStudent();
         } catch (NoStudentException ec10) {
             JOptionPane.showMessageDialog(null, "无学生");
-        };
+        }
         String[][] showedStudentList = new String[studentList.length][6];
         for(int i = 0; i < showedStudentList.length; i++){
             for(int j = 0; j < 6; j++){
@@ -240,6 +254,13 @@ public class AdminView extends JFrame{
                 try {
                     adminService.addStudent(addedStudent);
                     JOptionPane.showMessageDialog(null, "学生添加成功");
+                    try {
+                        studentList = adminService.listAllStudent();
+                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ));
+                    }
+                    catch (NoStudentException ec10){
+                        JOptionPane.showMessageDialog(null, "无学生");
+                    }
                 } catch (BaseDAO.UserExistException ec11) {
                     JOptionPane.showMessageDialog(null, "用户名已存在");
                 } catch (BaseDAO.StudentExistException ec12) {
@@ -274,6 +295,13 @@ public class AdminView extends JFrame{
                 try {
                     adminService.deleteStudent(deletedStudentNumber);
                     JOptionPane.showMessageDialog(null, "学生删除成功");
+                    try {
+                        studentList = adminService.listAllStudent();
+                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ));
+                    }
+                    catch (NoStudentException ec10){
+                        JOptionPane.showMessageDialog(null, "无学生");
+                    }
                 } catch (BaseDAO.StudentNotFoundException ec18) {
                     JOptionPane.showMessageDialog(null, "该学生不存在");
                 } catch (StudentSelectedCourseException ex) {
