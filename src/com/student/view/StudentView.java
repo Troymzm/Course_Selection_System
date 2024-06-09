@@ -211,10 +211,19 @@ public class StudentView extends JFrame {
             JButton searchButton3 = new JButton("查询时间段");
             JButton searchButton4 = new JButton("查询学期课程");
             JButton searchButton5 = new JButton("查询学年课程");
-            String text = searchTextField.getText();
+            //String text1 = searchTextField.getText();
             searchButton1.addActionListener(e ->{
                 try{
-                    String[] course = studentService.queryCourseInformation(text);
+                    String text = searchTextField.getText();
+                    String[] resultButton1 = studentService.queryCourseInformation(text);
+                    String[] course = new String[resultButton1.length + 1];
+                    for (int i = 0; i < resultButton1.length + 1; i++) {
+                        if (i != resultButton1.length) {
+                            course[i] = resultButton1[i];
+                        } else {
+                            course[i] = "选课";
+                        }
+                    }
                     // 创建包含单行课程信息的二维数组
                     String[][] courseData = {course};
                     // 移除之前的表格
@@ -232,6 +241,7 @@ public class StudentView extends JFrame {
             );
             searchButton2.addActionListener(e ->{
                 try{
+                    String text = searchTextField.getText();
                     String[][] course = studentService.queryTeacherCourse(text);
                     // 创建包含单行课程信息的二维数组
                     String[][] courseData = course;
@@ -250,6 +260,7 @@ public class StudentView extends JFrame {
             );
             searchButton3.addActionListener(e ->{
                         try{
+                            String text = searchTextField.getText();
                             String[][] course = studentService.queryCourseInformation(text,text);
                             // 创建包含单行课程信息的二维数组
                             String[][] courseData = course;
@@ -272,6 +283,7 @@ public class StudentView extends JFrame {
             );
             searchButton4.addActionListener(e ->{
                 try{
+                    String text = searchTextField.getText();
                     String[][] course = studentService.querySemesterSeasonCourse(text);
                     // 创建包含单行课程信息的二维数组
                     String[][] courseData = course;
@@ -290,6 +302,7 @@ public class StudentView extends JFrame {
             );
             searchButton5.addActionListener(e ->{
                 try{
+                    String text = searchTextField.getText();
                     String[][] course = studentService.querySemesterYearCourse(text);
                     // 创建包含单行课程信息的二维数组
                     String[][] courseData = course;
