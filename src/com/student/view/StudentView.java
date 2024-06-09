@@ -366,6 +366,11 @@ public class StudentView extends JFrame {
                     String confirmPassword = JOptionPane.showInputDialog(null, "请再次输入新的密码以确认:");
                     if (confirmPassword != null && confirmPassword.equals(newPassword)) {
                         // 在这里添加修改密码的逻辑处理
+                        try {
+                            studentService.updatePassword(studentNO, newPassword);
+                        } catch (InputException ex) {
+                            JOptionPane.showMessageDialog(null,"密码不能为空");
+                        }
                         JOptionPane.showMessageDialog(null, "密码修改成功");
                     } else {
                         JOptionPane.showMessageDialog(null, "确认密码不匹配，请重新输入");
