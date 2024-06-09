@@ -22,6 +22,7 @@ public class AdminView extends JFrame{
     AdminService adminService = new AdminService();
     private JPanel mainPanel;
     private JPanel westPanel;
+    private JPanel nullPanel;
     private JButton courseButton;
     private JButton studentButton;
     private JPanel coursePage;
@@ -42,6 +43,9 @@ public class AdminView extends JFrame{
         westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
+        //创建空面板，用于填充
+        nullPanel = new JPanel();
+
         //创建课程面板
         coursePage = new JPanel(new BorderLayout());
 
@@ -61,7 +65,7 @@ public class AdminView extends JFrame{
         DefaultTableModel courseModel = new DefaultTableModel(courseList, courseColumnNames){
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // 使所有单元格都不可编辑
+                return false;
             }
         };
         JTable courseTable = new JTable(courseModel);
@@ -141,9 +145,9 @@ public class AdminView extends JFrame{
         JPanel courseDeletePage = new JPanel();
         JLabel courseDeleteLabel = new JLabel("请输入课程编号");
         JTextField courseDeleteTextField = new JTextField(10);
+        JButton courseDelete = new JButton("确认");
         courseDeletePage.add(courseDeleteLabel);
         courseDeletePage.add(courseDeleteTextField);
-        JButton courseDelete = new JButton("确认");
         courseDeletePage.add(courseDelete);
         courseDelete.addActionListener(new ActionListener() {
             @Override
@@ -166,20 +170,67 @@ public class AdminView extends JFrame{
             }
         });
 
-        //创建课程信息界面
-        JPanel courseInformationPage = new JPanel();
+        //创建课程选择信息界面
+        JPanel courseInformationPage = new JPanel(new BorderLayout());
+        JPanel courseInformationPageNorth = new JPanel();
+        JLabel courseInformationLabel = new JLabel("请输入课程编号");
+        JTextField courseInformationTextField = new JTextField(10);
+        JButton courseInformation = new JButton("确认");
+        courseInformationPage.add(courseInformationPageNorth,BorderLayout.NORTH);
+        courseInformationPage.add(nullPanel,BorderLayout.CENTER);
+        courseInformationPageNorth.add(courseInformationLabel);
+        courseInformationPageNorth.add(courseInformationTextField);
+        courseInformationPageNorth.add(courseInformation);
+        courseInformation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] studentColumnNames = {"学号", "姓名"};
+                String[][] studentInCourse = new String[0][];
+                String informationCourseNumber = courseInformationTextField.getText();
+                try {
+                    studentInCourse = adminService.listStudentInCourse(informationCourseNumber);
+                } catch (NoStudentSelect ex) {
+                    JOptionPane.showMessageDialog(null, "无学生选择课程");
+                }
+                String[][] showedStudentInCourseList = new String[studentList.length][6];
+                for(int i = 0; i < studentInCourse.length; i++){
+                    for(int j = 0; j < 2; j++){
+                        showedStudentInCourseList[i][j] = studentList[i][j];
+                    }
+                }
+
+                DefaultTableModel studentModel = new DefaultTableModel(showedStudentInCourseList, studentColumnNames){
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false; // 使所有单元格都不可编辑
+                    }
+                };
+                JTable studentTable = new JTable(studentModel);
+                JScrollPane studentScrollPane = new JScrollPane(studentTable);
+                JPanel showedStudentInCoursePage = new JPanel();
+                showedStudentInCoursePage.add(studentScrollPane);
+                courseInformationPage.remove(courseInformationPage.getComponent(1));
+                courseInformationPage.add(showedStudentInCoursePage, BorderLayout.CENTER);
+                courseInformationPage.revalidate();
+                courseInformationPage.repaint();
+            }
+        });
+
 
 
         //创建课程功能按钮
         JButton courseAddButton = new JButton("增加课程");
         JButton courseDeleteButton = new JButton("删除课程");
+        JButton courseInformationButton = new JButton("课程选择情况");
         courseAddButton.setSize(70, 40);
         courseDeleteButton.setSize(70, 40);
+        courseInformationButton.setSize(70, 40);
         //添加按钮至课程页面
         JPanel coursePageSouth = new JPanel();
         coursePage.add(coursePageSouth, BorderLayout.SOUTH);
         coursePageSouth.add(courseAddButton);
         coursePageSouth.add(courseDeleteButton);
+        coursePageSouth.add(courseInformationButton);
         // 为按钮添加动作监听器
         courseAddButton.addActionListener(new ActionListener() {
             @Override
@@ -191,6 +242,12 @@ public class AdminView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 ShowPageInCenter(courseDeletePage);
+            }
+        });
+        courseInformationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ShowPageInCenter(courseInformationPage);
             }
         });
 
@@ -216,7 +273,6 @@ public class AdminView extends JFrame{
             }
         }
 
-        ;
         DefaultTableModel studentModel = new DefaultTableModel(showedStudentList, studentColumnNames){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -391,7 +447,6 @@ public class AdminView extends JFrame{
         });
 
         //将面板添加到主面板中
-        JPanel nullPanel = new JPanel();
         mainPanel.add(westPanel, BorderLayout.WEST);
         mainPanel.add(nullPanel, BorderLayout.CENTER);
 
