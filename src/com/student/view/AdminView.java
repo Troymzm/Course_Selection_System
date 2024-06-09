@@ -203,7 +203,7 @@ public class AdminView extends JFrame{
         };
         JTable courseInformationTable = new JTable(courseInformationModel);
         JScrollPane courseInformationScrollPane = new JScrollPane(courseInformationTable);
-        nullPanel.add(courseInformationScrollPane, BorderLayout.CENTER);
+        courseInformationPage.add(courseInformationScrollPane, BorderLayout.CENTER);
         courseDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
