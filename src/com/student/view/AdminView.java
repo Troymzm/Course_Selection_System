@@ -28,6 +28,7 @@ public class AdminView extends JFrame{
     private JPanel coursePage;
     private JPanel studentPage;
     private String[][] courseList;
+    private String[][] courseInformationList;
     private String[][] studentList;
     public AdminView() {
         // 设置窗口标题和关闭操作
@@ -191,7 +192,39 @@ public class AdminView extends JFrame{
         courseInformationPageNorth.add(courseInformationLabel);
         courseInformationPageNorth.add(courseInformationTextField);
         courseInformationPageNorth.add(courseInformation);
-
+        final String[] courseInformationColumnNames = {"学号", "姓名"};
+        courseInformationList = new String[0][];
+        final String[][][] showedCourseInformationList = {new String[0][2]};
+        DefaultTableModel courseInformationModel = new DefaultTableModel(showedCourseInformationList[0], courseInformationColumnNames){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // 使所有单元格都不可编辑
+            }
+        };
+        JTable courseInformationTable = new JTable(courseInformationModel);
+        JScrollPane courseInformationScrollPane = new JScrollPane(courseInformationTable);
+        nullPanel.add(courseInformationScrollPane, BorderLayout.CENTER);
+        courseDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            try{
+                courseInformationList = adminService.listStudentInCourse(courseInformationTextField.getText());
+            }catch (NoStudentSelect e1) {
+                JOptionPane.showMessageDialog(null,"无学生选课");
+            }
+                showedCourseInformationList[0] = new String[courseInformationList.length][2];
+            for(int i = 0; i < showedCourseInformationList[0].length; i++){
+                for(int j = 0; j < 2; j++){
+                    showedCourseInformationList[0][i][j] = courseInformationList[i][j];
+                }
+            }
+                courseInformationTable.setModel(new DefaultTableModel(showedCourseInformationList,courseInformationColumnNames ){
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                });
+            }});
 
 
         //创建课程功能按钮
