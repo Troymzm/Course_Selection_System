@@ -83,55 +83,52 @@ public class StudentView extends JFrame {
     }
     private JPanel createSchedulePage() {
         JPanel panel = new JPanel();
-        String[] column = {"课程号", "课程名", "学分", "开课院系","老师", "上课地点", "起始周", "终止周", "开始时间", "结束时间", "最大容量", "操作"};// 添加了"操作"列
+        String[] column = {"课程号", "课程名", "学分","开课院系","老师", "上课地点","学年","学期","起始周", "终止周", "开始时间", "结束时间", "最大容量","操作"};// 添加了"操作"列
 
         try {
             StudentService studentService = new StudentService();
-            String[][] courses = studentService.listSelectedCourse(studentNO);
-            DefaultTableModel model = new DefaultTableModel(courses, column);
-
-            // 创建表格并设置模型
-            JTable courseTable = new JTable(model) {
-                // 重写 isCellEditable 方法以允许编辑最后一列的单元格
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return column == this.getColumnCount() - 1;
+            String[][] result = studentService.listSelectedCourse(studentNO);
+            String[][] courses = new String[result.length][14];
+            for (int i = 0; i < result.length; i++) {
+                for (int j = 0; j <= result[i].length; j++) {
+                    if (j != result[i].length) {
+                        courses[i][j] = result[i][j];
+                    } else {
+                        courses[i][j] = "退课";
+                    }
                 }
-            };
+            }
 
             // 添加退课按钮的渲染器
-            courseTable.setDefaultRenderer(Object.class, new ButtonRenderer("退课") {
+            JTable courseTable = new JTable(courses, column) {
+                // 重写 getCellRenderer 方法来为最后一列添加按钮渲染器
                 @Override
-                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    // 调用父类方法来获取按钮组件
-                    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                    if (value != null && value.equals("退课")) {
-                        // 如果单元格值为"退课"，则设置按钮的文本
-                        setText("退课");
+                public TableCellRenderer getDefaultRenderer(Class<?> columnClass) {
+                    if (columnClass == String.class && this.getColumnCount() > 0 && this.getColumnName(this.getColumnCount() - 1) != null) {
+                        return new ButtonRenderer("退课");
                     }
-                    return c;
+                    return super.getDefaultRenderer(columnClass);
                 }
-            });
-
-            // 为退课按钮添加鼠标点击事件
+            };
+            // 为表格的按钮添加动作监听器
+            courseTable.setDefaultRenderer(String.class, new ButtonRenderer("选课"));
             courseTable.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     int row = courseTable.rowAtPoint(e.getPoint());
-                    int column = courseTable.columnAtPoint(e.getPoint());
-                    if (column == courseTable.getColumnCount() - 1) { // 点击了最后一列
-                        int selectedRow = courseTable.getSelectedRow();
-                        if (selectedRow >= 0) {
-                            String courseNo = (String) model.getValueAt(selectedRow, 0);
-                            // 执行退课逻辑
-                            studentService.dropCourse(studentNO, courseNo);
-                            JOptionPane.showMessageDialog(null, "退课成功");
-                            // 刷新表格
-                            createSchedulePage();
-                        }
+                    int col = courseTable.columnAtPoint(e.getPoint());
+                    if (col == courseTable.getColumnCount() - 1 && e.getClickCount() == 1) { // 点击了最后一列
+                        String courseNo = courseTable.getValueAt(row, 0).toString();
+                        // 在这里添加选课逻辑
+                        studentService.dropCourse(studentNO,courseNo);
+                        JOptionPane.showMessageDialog(null, "退课成功");
+
+                        // 刷新表格
+                        courseTable.setModel(new DefaultTableModel(courses, column));
                     }
                 }
             });
+
             JScrollPane scrollPane = new JScrollPane(courseTable);
             panel.add(scrollPane);
         } catch (NoSelectedCourseException e) {
@@ -145,10 +142,22 @@ public class StudentView extends JFrame {
     private JPanel createCourseSelectionPage() {
         JPanel panel = new JPanel(new BorderLayout());
         /* 初始化课程信息表格模型 */
-        String[] column = {"课程号", "课程名", "学分","开课院系","老师", "上课地点","学年","学期","起始周", "终止周", "开始时间", "结束时间", "最大容量"};
+        String[] column = {"课程号", "课程名", "学分","开课院系","老师", "上课地点","学年","学期","起始周", "终止周", "开始时间", "结束时间", "最大容量","操作"};
         StudentService studentService = new StudentService();
         try{
-            String[][] courses = studentService.listUnselectedCourse(studentNO);
+            String[][] result = studentService.listUnselectedCourse(studentNO);
+            String[][] courses = new String[result.length][14];
+            for (int i = 0; i < result.length; i++) {
+                for (int j = 0; j <= result[i].length; j++) {
+                    if (j != result[i].length) {
+                        courses[i][j] = result[i][j];
+                    }
+                    else {
+                        courses[i][j] = "选课";
+                    }
+                }
+
+            }
             JTable courseTable = new JTable(courses, column) {
                 // 重写 getCellRenderer 方法来为最后一列添加按钮渲染器
                 @Override
