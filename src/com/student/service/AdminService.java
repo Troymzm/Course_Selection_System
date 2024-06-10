@@ -11,6 +11,8 @@ import com.student.exceptions.adminexceptions.addstudent.StudentNOInputException
 import com.student.exceptions.adminexceptions.course.*;
 import com.student.exceptions.studentexceptions.NoSelectedCourseException;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -165,7 +167,11 @@ public class AdminService {
         if(!(isValidTimeFormat(courseInformation[10]) && isValidTimeFormat(courseInformation[11]))){
             throw new TimeInputException();
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        if(LocalTime.parse(courseInformation[11], formatter).isBefore(LocalTime.parse(courseInformation[10], formatter)) || LocalTime.parse(courseInformation[11], formatter).equals(LocalTime.parse(courseInformation[10], formatter))){
+            throw new TimeInputException();
 
+        }
         //学期输入检测
         if(!(courseInformation[7].equals("春")||courseInformation[7].equals("夏")||courseInformation[7].equals("秋"))){
             throw new SemesterInputException();
