@@ -1,6 +1,5 @@
 package com.student.service;
 
-
 import com.student.base.BaseDAO;
 import com.student.dao.AdminDAO;
 import com.student.dao.StudentDAO;
@@ -12,8 +11,10 @@ import com.student.exceptions.adminexceptions.addstudent.StudentNOInputException
 import com.student.exceptions.adminexceptions.course.*;
 import com.student.exceptions.studentexceptions.NoSelectedCourseException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 import static com.student.AppConstants.STUDENT_INITIAL_PASSWORD;
 import static com.student.service.StudentService.isValidTimeFormat;
@@ -32,7 +33,6 @@ public class AdminService {
         }
 
         Arrays.sort(allStudent, Comparator.comparing(arr -> arr[0]));
-
         return allStudent;
     }
 
@@ -58,11 +58,20 @@ public class AdminService {
      */
     public String[][] listStudentInCourse(String courseNO) throws NoStudentSelect {
         String[][] studentInCourse = AdminDAO.getInstance().queryStudentWhoSelectCourse(courseNO);
-
+        String[][] allStudent = AdminDAO.getInstance().listAllStudents();
+        List<String[]> result = new ArrayList<>();
         if(studentInCourse.length == 0){
             throw new NoStudentSelect();
         }
-         return studentInCourse;
+        for(int i = 0;i < studentInCourse.length;i++){
+            for(int j = 0;j < allStudent.length;j++){
+                if(studentInCourse[i][0].equals(allStudent[j][0])){
+                    result.add(allStudent[j]);
+                    break;
+                }
+            }
+        }
+        return result.toArray(new String[result.size()][]);
     }
 
     public void addStudent(String[] studentInformation) throws BaseDAO.UserExistException, BaseDAO.StudentExistException, GenderInputException, EmptyStringException, PasswordInputException, StudentNOInputException, AgeInputException {
@@ -73,17 +82,14 @@ public class AdminService {
                 throw new EmptyStringException();
             }
         }
-
         //学号输入检测PB后跟六位数字
         if(!(studentInformation[0].matches("^PB\\d{6}$"))){
             throw new StudentNOInputException();
         }
-
         //性别输入检测
         if(!(studentInformation[2].equals("男") || studentInformation[2].equals("女"))) {
             throw new GenderInputException();
         }
-
         //年龄输入检测(是0~120的数字)
         if(!(studentInformation[3].matches("^\\d+$"))){
             throw new AgeInputException();
@@ -91,12 +97,10 @@ public class AdminService {
         if(Integer.parseInt(studentInformation[3]) <= 0 ||Integer.parseInt(studentInformation[3]) >= 120){
             throw new AgeInputException();
         }
-
         //密码初始化检测
         if(!(studentInformation[6].equals(STUDENT_INITIAL_PASSWORD))){
             throw new PasswordInputException();
         }
-
         AdminDAO.getInstance().addStudent(studentInformation);
     }
 
@@ -156,7 +160,6 @@ public class AdminService {
         if(!(courseInformation[7].equals("春")||courseInformation[7].equals("夏")||courseInformation[7].equals("秋"))){
             throw new SemesterInputException();
         }
-
         AdminDAO.getInstance().addCourse(courseInformation);
     }
 
