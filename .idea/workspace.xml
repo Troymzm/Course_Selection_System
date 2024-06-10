@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="">
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="dsad">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/AdminService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,14 +41,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/code/ideaJava/Course_Selection_System",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "应用程序.Main.executor": "Run"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\project\Java\Course_Selection_System\src\com\student" />
@@ -71,6 +65,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.StudentView" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -372,23 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718008709402</updated>
     </task>
-    <task id="LOCAL-00035" summary="添加了学生登录界面">
-      <option name="closed" value="true" />
-      <created>1718010115023</created>
+    <task id="LOCAL-00035" summary="dsad">
+      <created>1718009232541</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1718010115023</updated>
+      <updated>1718009232541</updated>
     </task>
-    <task id="LOCAL-00036" summary="添加了学生登录界面">
-      <option name="closed" value="true" />
-      <created>1718012458705</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1718012458705</updated>
-    </task>
-    <option name="localTasksCounter" value="37" />
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,6 +394,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first submission" />
@@ -414,9 +405,10 @@
     <MESSAGE value="修改了部分问题" />
     <MESSAGE value="修改了命名问题" />
     <MESSAGE value="添加了课程人数上限属性" />
+    <MESSAGE value="添加了学生登录界面" />
     <MESSAGE value="修改了listStudentInCourse方法" />
     <MESSAGE value="修改密码方法" />
-    <MESSAGE value="添加了学生登录界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了学生登录界面" />
+    <MESSAGE value="dsad" />
+    <option name="LAST_COMMIT_MESSAGE" value="dsad" />
   </component>
 </project>
