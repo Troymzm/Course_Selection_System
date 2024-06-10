@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="StudentView">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/view/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/view/StudentView.java" afterDir="false" />
-    </list>
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改了listStudentInCourse方法" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,14 +47,7 @@
       <recent name="com.student.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Course_Selection_System" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="StudentView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.student.view.StudentView" />
       <module name="Course_Selection_System" />
@@ -71,25 +61,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.StudentView" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -384,14 +355,7 @@
       <option name="project" value="LOCAL" />
       <updated>1717995796525</updated>
     </task>
-    <task id="LOCAL-00034" summary="StudentView">
-      <created>1717998075063</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1717998075063</updated>
-    </task>
-    <option name="localTasksCounter" value="35" />
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,7 +384,6 @@
     <MESSAGE value="添加了课程人数上限属性" />
     <MESSAGE value="添加了学生登录界面" />
     <MESSAGE value="修改了listStudentInCourse方法" />
-    <MESSAGE value="StudentView" />
-    <option name="LAST_COMMIT_MESSAGE" value="StudentView" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了listStudentInCourse方法" />
   </component>
 </project>
