@@ -309,20 +309,20 @@ public class StudentView extends JFrame {
         }
         modifyInfoButton.addActionListener(e -> {
             String newPassword = JOptionPane.showInputDialog(null, "请输入新的密码:");
-            if (newPassword.length() == 6) {
+            if (newPassword.length() == 6 && newPassword.matches("[a-zA-Z0-9]+")) {
                 String confirmPassword = JOptionPane.showInputDialog(null, "请再次输入新的密码以确认:");
                 if (confirmPassword.equals(newPassword)) {
                     try {
                         studentService.updatePassword(studentNO, newPassword);
                         JOptionPane.showMessageDialog(null, "密码修改成功");
                     } catch (InputException ex) {
-                        JOptionPane.showMessageDialog(null,"密码应为六位字符");
+                        JOptionPane.showMessageDialog(null,"密码应为六位字符(数字和字母)");
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "确认密码不匹配，请重新输入");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "密码应为六位字符");
+                JOptionPane.showMessageDialog(null, "密码应为六位字符(数字和字母)");
             }
         });
         return panel;
