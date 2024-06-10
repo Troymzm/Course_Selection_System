@@ -1,6 +1,5 @@
 package com.student.view;
 
-import com.student.exceptions.adminexceptions.NoCourseException;
 import com.student.exceptions.studentexceptions.*;
 import com.student.service.StudentService;
 
@@ -18,9 +17,8 @@ import java.awt.event.MouseEvent;
  */
 public class StudentView extends JFrame {
     private JPanel mainPanel;
-    private JButton button1, button2, button3;
-    private JPanel page1, page2, page3;
-    private DefaultTableModel courseTableModel; // 用于课程信息表格的模型
+    private JButton courseButton, selectButton, personalInformationButton;
+    private JPanel personalCoursePage, selectCoursePage, personalInformationPage;
     private JTextField searchTextField; // 用于搜索课程的文本框
     private String studentNO;
 
@@ -44,7 +42,6 @@ public class StudentView extends JFrame {
         }
     }
 
-
     public StudentView(String studentNO) {
         this.studentNO = studentNO;
         // 设置窗口标题和关闭操作
@@ -57,41 +54,43 @@ public class StudentView extends JFrame {
         mainPanel = new JPanel(new BorderLayout());
 
         // 创建左侧面板，使用FlowLayout布局管理器
-        JPanel leftPanel = new JPanel(new FlowLayout());
-        button1 = new JButton("课表");
-        button2 = new JButton("选课");
-        button3 = new JButton("个人信息");
-
-        // 为按钮添加动作监听器
-        button1.addActionListener(e -> showPage(page1));
-        button2.addActionListener(e -> showPage(page2));
-        button3.addActionListener(e -> showPage(page3));
-
-        // 将按钮添加到左侧面板
-        leftPanel.add(button1);
-        leftPanel.add(button2);
-        leftPanel.add(button3);
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        courseButton = new JButton("课程列表");
+        selectButton = new JButton("选择课程");
+        personalInformationButton = new JButton("个人信息");
 
         // 创建页面
-        page1 = createSchedulePage();
-        page2 = createCourseSelectionPage();
-        page3 = createPersonalInfoPage();
+        personalCoursePage = createSchedulePage();
+        selectCoursePage = createCourseSelectionPage();
+        personalInformationPage = createPersonalInfoPage();
+
+        // 为按钮添加动作监听器
+        courseButton.addActionListener(e -> showPage(personalCoursePage));
+        selectButton.addActionListener(e -> showPage(selectCoursePage));
+        personalInformationButton.addActionListener(e -> showPage(personalInformationPage));
+
+        // 将按钮添加到左侧面板
+        leftPanel.add(courseButton);
+        leftPanel.add(selectButton);
+        leftPanel.add(personalInformationButton);
+
 
         // 将左侧面板和初始页面添加到主面板
         mainPanel.add(leftPanel, BorderLayout.WEST);
-        mainPanel.add(page1, BorderLayout.CENTER);
+        mainPanel.add(personalCoursePage, BorderLayout.CENTER);
 
         // 将主面板添加到窗口
         add(mainPanel);
     }
 
     private JPanel createSchedulePage() {
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(new BorderLayout());
         String[] column = {"课程号", "课程名", "学分","开课院系","老师", "上课地点","学年","学期","起始周", "终止周", "开始时间", "结束时间", "最大容量","操作"};// 添加了"操作"列
+        StudentService studentService = new StudentService();
 
         try {
-            StudentService studentService = new StudentService();
-            String[][] result = studentService.listSelectedCourse(studentNO);
+            String[][] result = new String[0][];
             String[][] courses = courseAddSelection(result);
             // 添加退课按钮的渲染器
             JTable courseTable = new JTable(courses, column) {
@@ -104,8 +103,24 @@ public class StudentView extends JFrame {
                     return super.getDefaultRenderer(columnClass);
                 }
             };
+
+            JButton refreshButton = new JButton("显示已选择的课程列表（刷新）");
+            refreshButton.addActionListener(e ->{
+                String[][] resultUpdate = new String[0][];
+                try {
+                    resultUpdate = studentService.listSelectedCourse(studentNO);
+                } catch (NoSelectedCourseException noSelectedCourseException) {
+                    JOptionPane.showMessageDialog(null, "您还尚未选择课程");
+                }
+                String[][] coursesUpdate = courseAddSelection(resultUpdate);
+                courseTable.setModel(new DefaultTableModel(coursesUpdate,column ));
+
+            });
+            panel.add(refreshButton,BorderLayout.SOUTH);
+
+            result = studentService.listSelectedCourse(studentNO);
             // 为表格的按钮添加动作监听器
-            courseTable.setDefaultRenderer(String.class, new ButtonRenderer("选课"));
+            courseTable.setDefaultRenderer(String.class, new ButtonRenderer("退课"));
             courseTable.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -130,12 +145,13 @@ public class StudentView extends JFrame {
             });
 
             JScrollPane scrollPane = new JScrollPane(courseTable);
-            panel.add(scrollPane);
-        } catch (NoSelectedCourseException e) {
-            JOptionPane.showMessageDialog(null, "没有已选课程");
-        }
+            panel.add(scrollPane,BorderLayout.CENTER);
 
+        } catch (NoSelectedCourseException e) {
+            JOptionPane.showMessageDialog(null, "您还尚未选择课程");
+        }
         return panel;
+
     }
 
     private JPanel createCourseSelectionPage() {
@@ -154,13 +170,14 @@ public class StudentView extends JFrame {
             // 创建搜索框和按钮
             JPanel searchPanel = new JPanel(new FlowLayout());
             searchTextField = new JTextField(20);
-            JButton searchButton1 = new JButton("查询课程号");
-            JButton searchButton2 = new JButton("查询老师");
-            JButton searchButton3 = new JButton("查询时间段");
-            JButton searchButton4 = new JButton("查询学期课程");
-            JButton searchButton5 = new JButton("查询学年课程");
+            JButton courseNOSearchButton = new JButton("查询课程号");
+            JButton teacherSearchButton = new JButton("查询老师");
+            JButton timeSearchButton = new JButton("查询时间段");
+            JButton semesterSeasonSearchButton = new JButton("查询学期课程");
+            JButton semesterYearSearchButton = new JButton("查询学年课程");
+            JButton returnButton = new JButton("返回（刷新）");
 
-            searchButton1.addActionListener(e ->{
+            courseNOSearchButton.addActionListener(e ->{
                 try{
                     String text = searchTextField.getText();
                     String[] resultButton1 = studentService.queryCourseInformation(text);
@@ -174,27 +191,22 @@ public class StudentView extends JFrame {
                     }
 
                     String[][] courseData = {course};
-
-                    JTable resultTable = courseSelectionTable(courseData,column,studentService);
-                    JScrollPane resultScrollPane = new JScrollPane(resultTable);
-                   showMorePage(scrollPane,resultScrollPane,panel);
+                    courseTable.setModel(new DefaultTableModel(courseData,column ));
                 }catch(NoCourseQualifiedException e2){
                     JOptionPane.showMessageDialog(null, "没有对应课程");
                 }}
             );
-            searchButton2.addActionListener(e ->{
+            teacherSearchButton.addActionListener(e ->{
                 try{
                     String text = searchTextField.getText();
                     String[][] queryResult = studentService.queryTeacherCourse(text);
                     String[][] course = courseAddSelection(queryResult);
-                    JTable resultTable = courseSelectionTable(course,column,studentService);
-                    JScrollPane resultScrollPane = new JScrollPane(resultTable);
-                    showMorePage(scrollPane,resultScrollPane,panel);
+                    courseTable.setModel(new DefaultTableModel(course,column ));
                 }catch(NoCourseQualifiedException e2){
                     JOptionPane.showMessageDialog(null, "没有对应课程");
                 }}
             );
-            searchButton3.addActionListener(e ->{
+            timeSearchButton.addActionListener(e ->{
                         try{
                             String text = searchTextField.getText();
                             String[] texts = text.split(",");
@@ -203,9 +215,11 @@ public class StudentView extends JFrame {
                             }else{
                                 String[][] queryResult = studentService.queryCourseInformation(texts[0],texts[1]);
                                 String[][] course = courseAddSelection(queryResult);
-                                JTable resultTable = courseSelectionTable(course,column,studentService);
-                                JScrollPane resultScrollPane = new JScrollPane(resultTable);
-                                showMorePage(scrollPane,resultScrollPane,panel);}
+                                courseTable.setModel(new DefaultTableModel(course,column ));
+                                /*JTable resultTable = courseSelectionTable(course,column,studentService);
+                                resultScrollPane3.setViewportView(resultTable);
+                                showMorePage(scrollPane,resultScrollPane3,panel);*/
+                            }
 
                         }catch(NoCourseQualifiedException e2){
                             JOptionPane.showMessageDialog(null, "没有对应课程");
@@ -215,38 +229,45 @@ public class StudentView extends JFrame {
                         }
                     }
             );
-            searchButton4.addActionListener(e ->{
+            semesterSeasonSearchButton.addActionListener(e ->{
                 try{
                     String text = searchTextField.getText();
                     String[][] queryResult = studentService.querySemesterSeasonCourse(text);
                     String[][] course = courseAddSelection(queryResult);
-                    JTable resultTable = courseSelectionTable(course,column,studentService);
-                    JScrollPane resultScrollPane = new JScrollPane(resultTable);
-                    showMorePage(scrollPane,resultScrollPane,panel);
+                    courseTable.setModel(new DefaultTableModel(course,column ));
                 }catch(NoCourseQualifiedException e2){
                     JOptionPane.showMessageDialog(null, "没有对应课程");
                 }}
             );
-            searchButton5.addActionListener(e ->{
+            semesterYearSearchButton.addActionListener(e ->{
                 try{
                     String text = searchTextField.getText();
                     String[][] queryResult = studentService.querySemesterYearCourse(text);
                     String[][] course = courseAddSelection(queryResult);
-                    JTable resultTable = courseSelectionTable(course,column,studentService);
-                    JScrollPane resultScrollPane = new JScrollPane(resultTable);
-                    showMorePage(scrollPane,resultScrollPane,panel);
+                    courseTable.setModel(new DefaultTableModel(course,column ));
                 }catch(NoCourseQualifiedException e2){
                     JOptionPane.showMessageDialog(null, "没有对应课程");
                 }}
             );
+            returnButton.addActionListener(e ->{
+
+                String[][] resultUpdate = new String[0][];
+                try {
+                    resultUpdate = studentService.listUnselectedCourse(studentNO);
+                } catch (NoCourseToSelectException noCourseToSelectException) {
+                    JOptionPane.showMessageDialog(null, "没有可选课程");
+                }
+                String[][] coursesUpdate = courseAddSelection(resultUpdate);
+                courseTable.setModel(new DefaultTableModel(coursesUpdate,column ));
+            });
 
             searchPanel.add(searchTextField);
-            searchPanel.add(searchButton1);
-            searchPanel.add(searchButton2);
-            searchPanel.add(searchButton3);
-            searchPanel.add(searchButton4);
-            searchPanel.add(searchButton5);
-
+            searchPanel.add(courseNOSearchButton);
+            searchPanel.add(teacherSearchButton);
+            searchPanel.add(timeSearchButton);
+            searchPanel.add(semesterSeasonSearchButton);
+            searchPanel.add(semesterYearSearchButton);
+            searchPanel.add(returnButton);
 
 
             panel.add(searchPanel, BorderLayout.NORTH);
@@ -258,7 +279,7 @@ public class StudentView extends JFrame {
 
     private JPanel createPersonalInfoPage() {
         JPanel panel = new JPanel(new GridBagLayout());
-        JButton modifyInfoButton = new JButton("修改信息");
+        JButton modifyInfoButton = new JButton("修改密码");
         StudentService studentService = new StudentService();
         try {
             String[] studentInformation = {"学号", "姓名", "性别", "年龄", "院系","用户名"}; // 初始化空数据
@@ -287,30 +308,21 @@ public class StudentView extends JFrame {
             JOptionPane.showMessageDialog(null, "没有这一学号");
         }
         modifyInfoButton.addActionListener(e -> {
-            // 当点击按钮时弹出选择对话框
-            String[] options = {"修改用户名", "修改密码"};
-            int choice = JOptionPane.showOptionDialog(null, "请选择要修改的信息", "修改信息", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            if (choice == 0) {
-
-            } else if (choice == 1) {
-                // 选择修改密码
-                String newPassword = JOptionPane.showInputDialog(null, "请输入新的密码:");
-                if (newPassword != null && !newPassword.isEmpty()) {
-                    String confirmPassword = JOptionPane.showInputDialog(null, "请再次输入新的密码以确认:");
-                    if (confirmPassword != null && confirmPassword.equals(newPassword)) {
-                        // 在这里添加修改密码的逻辑处理
-                        try {
-                            studentService.updatePassword(studentNO, newPassword);
-                        } catch (InputException ex) {
-                            JOptionPane.showMessageDialog(null,"密码不能为空");
-                        }
+            String newPassword = JOptionPane.showInputDialog(null, "请输入新的密码:");
+            if (newPassword.length() == 6) {
+                String confirmPassword = JOptionPane.showInputDialog(null, "请再次输入新的密码以确认:");
+                if (confirmPassword.equals(newPassword)) {
+                    try {
+                        studentService.updatePassword(studentNO, newPassword);
                         JOptionPane.showMessageDialog(null, "密码修改成功");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "确认密码不匹配，请重新输入");
+                    } catch (InputException ex) {
+                        JOptionPane.showMessageDialog(null,"密码应为六位字符");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "请输入有效的密码");
+                    JOptionPane.showMessageDialog(null, "确认密码不匹配，请重新输入");
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "密码应为六位字符");
             }
         });
         return panel;
@@ -380,13 +392,6 @@ public class StudentView extends JFrame {
         mainPanel.add(page, BorderLayout.CENTER); // 添加新页面
         mainPanel.revalidate(); // 重新验证UI
         mainPanel.repaint(); // 重绘UI
-    }
-
-    private void showMorePage(JScrollPane preScrollPane,JScrollPane afterScrollPane,JPanel panel){
-        panel.remove(preScrollPane);
-        panel.add(afterScrollPane, BorderLayout.CENTER);
-        panel.revalidate();
-        panel.repaint();
     }
 
 }
