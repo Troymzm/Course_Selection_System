@@ -5,6 +5,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import com.student.AppConstants;
 import com.student.base.BaseDAO;
 import com.student.service.*;
 import com.student.exceptions.adminexceptions.*;
@@ -312,18 +314,24 @@ public class AdminView extends JFrame{
         studentAddTextField[4] = new JTextField(10);
         studentAddLabel[5] = new JLabel("用户名");
         studentAddTextField[5] = new JTextField(10);
+        studentAddTextField[6] = new JTextField();
         studentAddLabel[6] = new JLabel("密码");
-        studentAddTextField[6] = new JTextField(10);
-        for (int i = 0; i <= 6; i++) {
+        JLabel studentPasswordAddLabel = new JLabel(AppConstants.STUDENT_INITIAL_PASSWORD);
+        for (int i = 0; i <= 5; i++) {
             studentAddPage.add(studentAddLabel[i]);
             studentAddPage.add(studentAddTextField[i]);
+
         }
+        studentAddPage.add(studentAddLabel[6]);
+        studentAddPage.add(studentPasswordAddLabel);
 
         JButton studentAdd = new JButton("确认");
         studentAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[] addedStudent = JTextFieldReader(studentAddTextField);
+                String[] addedStudent = new String[6];
+                addedStudent = JTextFieldReader(studentAddTextField);
+                addedStudent[6] = AppConstants.STUDENT_INITIAL_PASSWORD;
                 try {
                     adminService.addStudent(addedStudent);
                     JOptionPane.showMessageDialog(null, "学生添加成功");
