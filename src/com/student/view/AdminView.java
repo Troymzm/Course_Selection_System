@@ -30,6 +30,7 @@ public class AdminView extends JFrame{
     private String[][] courseList;
     private String[][] courseInformationList;
     private String[][] studentList;
+    private String[][] showedCourseInformationList;
     public AdminView() {
         // 设置窗口标题和关闭操作
         setTitle("管理员界面");
@@ -187,15 +188,16 @@ public class AdminView extends JFrame{
         JLabel courseInformationLabel = new JLabel("请输入课程编号");
         JTextField courseInformationTextField = new JTextField(10);
         JButton courseInformation = new JButton("确认");
+        JLabel showedCourseInformationLabel = new JLabel("已有课程");
         courseInformationPage.add(courseInformationPageNorth,BorderLayout.NORTH);
-        courseInformationPage.add(nullPanel,BorderLayout.CENTER);
+        courseInformationPage.add(showedCourseInformationLabel,BorderLayout.CENTER);
         courseInformationPageNorth.add(courseInformationLabel);
         courseInformationPageNorth.add(courseInformationTextField);
         courseInformationPageNorth.add(courseInformation);
         final String[] courseInformationColumnNames = {"学号", "姓名"};
         courseInformationList = new String[0][];
-        final String[][][] showedCourseInformationList = {new String[0][2]};
-        DefaultTableModel courseInformationModel = new DefaultTableModel(showedCourseInformationList[0], courseInformationColumnNames){
+        showedCourseInformationList = new String[0][];
+        DefaultTableModel courseInformationModel = new DefaultTableModel(showedCourseInformationList, courseInformationColumnNames){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // 使所有单元格都不可编辑
@@ -204,7 +206,7 @@ public class AdminView extends JFrame{
         JTable courseInformationTable = new JTable(courseInformationModel);
         JScrollPane courseInformationScrollPane = new JScrollPane(courseInformationTable);
         courseInformationPage.add(courseInformationScrollPane, BorderLayout.CENTER);
-        courseDelete.addActionListener(new ActionListener() {
+        courseInformation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             try{
@@ -212,10 +214,10 @@ public class AdminView extends JFrame{
             }catch (NoStudentSelect e1) {
                 JOptionPane.showMessageDialog(null,"无学生选课");
             }
-                showedCourseInformationList[0] = new String[courseInformationList.length][2];
-            for(int i = 0; i < showedCourseInformationList[0].length; i++){
+                showedCourseInformationList = new String[courseInformationList.length][2];
+            for(int i = 0; i < showedCourseInformationList.length; i++){
                 for(int j = 0; j < 2; j++){
-                    showedCourseInformationList[0][i][j] = courseInformationList[i][j];
+                    showedCourseInformationList[i][j] = courseInformationList[i][j];
                 }
             }
                 courseInformationTable.setModel(new DefaultTableModel(showedCourseInformationList,courseInformationColumnNames ){
