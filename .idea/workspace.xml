@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改" />
+    <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改">
+      <change beforePath="$PROJECT_DIR$/src/com/student/view/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/view/StudentView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +38,10 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -96,6 +102,7 @@
       <workItem from="1717850554179" duration="21000" />
       <workItem from="1717862297512" duration="1235000" />
       <workItem from="1717903791525" duration="6864000" />
+      <workItem from="1718026365905" duration="410000" />
     </task>
     <task id="LOCAL-00001" summary="first submission">
       <option name="closed" value="true" />
@@ -381,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718025147513</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="修改">
+      <created>1718026520043</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1718026520043</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
