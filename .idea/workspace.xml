@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="741fe99d-010e-499f-b26e-84543e0b80b9" name="更改" comment="修改密码方法">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/student/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/student/view/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/student/view/AdminView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,13 +40,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "master",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "应用程序.Main.executor": "Run"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\project\Java\Course_Selection_System\src\com\student" />
@@ -388,6 +381,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first submission" />
