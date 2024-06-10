@@ -46,7 +46,6 @@ public class AdminService {
         if(allCourse.length == 0 ){
             throw new NoCourseException();
         }
-
         Arrays.sort(allCourse, Comparator.comparing(arr -> arr[0]));
         return allCourse;
     }

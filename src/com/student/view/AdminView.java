@@ -184,22 +184,23 @@ public class AdminView extends JFrame{
         courseInformation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[] studentColumnNames = {"学号", "姓名"};
-                String[][] studentInCourse = new String[0][];
+               // String[] studentColumnNames = {"学号", "姓名"};
+                String[] studentColumnNames = {"学号", "姓名", "性别", "年龄", "院系", "用户名","密码"};
+                String[][] studentInCourse = new String[0][7];
                 String informationCourseNumber = courseInformationTextField.getText();
-                try {
+                /*try {
                     studentInCourse = adminService.listStudentInCourse(informationCourseNumber);
                 } catch (NoStudentSelect ex) {
                     JOptionPane.showMessageDialog(null, "无学生选择课程");
                 }
-                String[][] showedStudentInCourseList = new String[studentList.length][6];
+               /*String[][] showedStudentInCourseList = new String[studentInCourse.length][2];
                 for(int i = 0; i < studentInCourse.length; i++){
                     for(int j = 0; j < 2; j++){
                         showedStudentInCourseList[i][j] = studentList[i][j];
                     }
-                }
+                }*/
 
-                DefaultTableModel studentModel = new DefaultTableModel(showedStudentInCourseList, studentColumnNames){
+                DefaultTableModel studentModel = new DefaultTableModel(studentInCourse, studentColumnNames){
                     @Override
                     public boolean isCellEditable(int row, int column) {
                         return false; // 使所有单元格都不可编辑
@@ -461,6 +462,7 @@ public class AdminView extends JFrame{
         mainPanel.revalidate(); // 重新验证UI
         mainPanel.repaint(); // 重绘UI
     }
+
     private String[] JTextFieldReader(JTextField[] textFields){
         String[] texts = new String[textFields.length];
         for (int i = 0; i <textFields.length; i++){
