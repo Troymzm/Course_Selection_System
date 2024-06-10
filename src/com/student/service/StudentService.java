@@ -97,8 +97,8 @@ public class StudentService {
         String[][] allCourse = AdminDAO.getInstance().listAllCourses();
         List<String[]> result = new ArrayList<>();
         for(int i = 0;i < allCourse.length;i++){
-            if(time1.isBefore(LocalTime.parse(allCourse[i][10], formatter)) &&
-                    LocalTime.parse(allCourse[i][11], formatter).isBefore(time2)){
+            if((time1.isBefore(LocalTime.parse(allCourse[i][10], formatter)) || time1.equals(LocalTime.parse(allCourse[i][10], formatter))) &&
+                    (LocalTime.parse(allCourse[i][11], formatter).isBefore(time2) ||time2.equals(LocalTime.parse(allCourse[i][11], formatter)))){
                 result.add(allCourse[i]);
             }
         }
@@ -241,7 +241,7 @@ public class StudentService {
             boolean conditionWeek = !(Integer.parseInt(pointedCourse[9]) < Integer.parseInt(selectedCourse[i][8]) ||
                     Integer.parseInt(pointedCourse[8]) > Integer.parseInt(selectedCourse[i][9]));
             //判断选课与已有的课在时间上是否有重叠
-            boolean conditionTime = !(LocalTime.parse(pointedCourse[11], formatter).isBefore(LocalTime.parse(selectedCourse[i][10], formatter)) &&
+            boolean conditionTime = !(LocalTime.parse(pointedCourse[11], formatter).isBefore(LocalTime.parse(selectedCourse[i][10], formatter)) ||
                     LocalTime.parse(selectedCourse[i][11], formatter).isBefore(LocalTime.parse(pointedCourse[10], formatter)));
 
             if(conditionSemester && conditionTime && conditionWeek){
