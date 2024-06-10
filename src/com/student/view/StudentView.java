@@ -91,7 +91,7 @@ public class StudentView extends JFrame {
 
         try {
             String[][] result = new String[0][];
-            String[][] courses = courseAddSelection(result);
+            String[][] courses = courseAddSelection(result,"退课");
             // 添加退课按钮的渲染器
             JTable courseTable = new JTable(courses, column) {
                 // 重写 getCellRenderer 方法来为最后一列添加按钮渲染器
@@ -112,7 +112,7 @@ public class StudentView extends JFrame {
                 } catch (NoSelectedCourseException noSelectedCourseException) {
                     JOptionPane.showMessageDialog(null, "您还尚未选择课程");
                 }
-                String[][] coursesUpdate = courseAddSelection(resultUpdate);
+                String[][] coursesUpdate = courseAddSelection(resultUpdate,"退课");
                 courseTable.setModel(new DefaultTableModel(coursesUpdate,column ));
 
             });
@@ -161,7 +161,7 @@ public class StudentView extends JFrame {
         StudentService studentService = new StudentService();
         try{
             String[][] result = studentService.listUnselectedCourse(studentNO);
-            String[][] courses = courseAddSelection(result);
+            String[][] courses = courseAddSelection(result,"选课");
             JTable courseTable = courseSelectionTable(courses,column,studentService);
             JScrollPane scrollPane = new JScrollPane(courseTable);
             panel.add(scrollPane);
@@ -200,7 +200,7 @@ public class StudentView extends JFrame {
                 try{
                     String text = searchTextField.getText();
                     String[][] queryResult = studentService.queryTeacherCourse(text);
-                    String[][] course = courseAddSelection(queryResult);
+                    String[][] course = courseAddSelection(queryResult,"选课");
                     courseTable.setModel(new DefaultTableModel(course,column ));
                 }catch(NoCourseQualifiedException e2){
                     JOptionPane.showMessageDialog(null, "没有对应课程");
@@ -214,7 +214,7 @@ public class StudentView extends JFrame {
                                 JOptionPane.showMessageDialog(null, "请正确输入时间");
                             }else{
                                 String[][] queryResult = studentService.queryCourseInformation(texts[0],texts[1]);
-                                String[][] course = courseAddSelection(queryResult);
+                                String[][] course = courseAddSelection(queryResult,"选课");
                                 courseTable.setModel(new DefaultTableModel(course,column ));
                                 /*JTable resultTable = courseSelectionTable(course,column,studentService);
                                 resultScrollPane3.setViewportView(resultTable);
@@ -233,7 +233,7 @@ public class StudentView extends JFrame {
                 try{
                     String text = searchTextField.getText();
                     String[][] queryResult = studentService.querySemesterSeasonCourse(text);
-                    String[][] course = courseAddSelection(queryResult);
+                    String[][] course = courseAddSelection(queryResult,"选课");
                     courseTable.setModel(new DefaultTableModel(course,column ));
                 }catch(NoCourseQualifiedException e2){
                     JOptionPane.showMessageDialog(null, "没有对应课程");
@@ -243,7 +243,7 @@ public class StudentView extends JFrame {
                 try{
                     String text = searchTextField.getText();
                     String[][] queryResult = studentService.querySemesterYearCourse(text);
-                    String[][] course = courseAddSelection(queryResult);
+                    String[][] course = courseAddSelection(queryResult,"选课");
                     courseTable.setModel(new DefaultTableModel(course,column ));
                 }catch(NoCourseQualifiedException e2){
                     JOptionPane.showMessageDialog(null, "没有对应课程");
@@ -257,7 +257,7 @@ public class StudentView extends JFrame {
                 } catch (NoCourseToSelectException noCourseToSelectException) {
                     JOptionPane.showMessageDialog(null, "没有可选课程");
                 }
-                String[][] coursesUpdate = courseAddSelection(resultUpdate);
+                String[][] coursesUpdate = courseAddSelection(resultUpdate,"选课");
                 courseTable.setModel(new DefaultTableModel(coursesUpdate,column ));
             });
 
@@ -372,7 +372,7 @@ public class StudentView extends JFrame {
         return courseTable;
     }
 
-    private String[][] courseAddSelection(String[][] queryResult){
+    private String[][] courseAddSelection(String[][] queryResult,String choice){
         String[][] course = new String[queryResult.length][14];
         for (int i = 0; i < queryResult.length; i++) {
             for (int j = 0; j <= queryResult[i].length; j++) {
@@ -380,7 +380,7 @@ public class StudentView extends JFrame {
                     course[i][j] = queryResult[i][j];
                 }
                 else {
-                    course[i][j] = "选课";
+                    course[i][j] = choice;
                 }
             }
         }
