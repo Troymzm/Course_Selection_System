@@ -282,7 +282,7 @@ public class StudentService {
 
 
     public void updatePassword(String studentNO,String newPassword) throws InputException {
-        if(newPassword.length() != 6){
+        if(newPassword.length() == 6 && newPassword.matches("[a-zA-Z0-9]+")){
             throw new InputException();
         }
         StudentDAO.getInstance().alterPassword(studentNO,newPassword);
