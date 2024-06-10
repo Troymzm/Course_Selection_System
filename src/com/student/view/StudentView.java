@@ -1,5 +1,6 @@
 package com.student.view;
 
+import com.student.exceptions.adminexceptions.NoCourseException;
 import com.student.exceptions.studentexceptions.*;
 import com.student.service.StudentService;
 
@@ -91,17 +92,7 @@ public class StudentView extends JFrame {
         try {
             StudentService studentService = new StudentService();
             String[][] result = studentService.listSelectedCourse(studentNO);
-            String[][] courses = new String[result.length][14];
-            for (int i = 0; i < result.length; i++) {
-                for (int j = 0; j <= result[i].length; j++) {
-                    if (j != result[i].length) {
-                        courses[i][j] = result[i][j];
-                    } else {
-                        courses[i][j] = "退课";
-                    }
-                }
-            }
-
+            String[][] courses = courseAddSelection(result);
             // 添加退课按钮的渲染器
             JTable courseTable = new JTable(courses, column) {
                 // 重写 getCellRenderer 方法来为最后一列添加按钮渲染器
@@ -127,7 +118,13 @@ public class StudentView extends JFrame {
                         JOptionPane.showMessageDialog(null, "退课成功");
 
                         // 刷新表格
-                        courseTable.setModel(new DefaultTableModel(courses, column));
+                        String[][] course = new String[0][];
+                        try {
+                            course = studentService.listSelectedCourse(studentNO);
+                        } catch (NoSelectedCourseException noSelectedCourseException) {
+                            JOptionPane.showMessageDialog(null, "暂无选课");
+                        }
+                        courseTable.setModel(new DefaultTableModel(course,column ));
                     }
                 }
             });

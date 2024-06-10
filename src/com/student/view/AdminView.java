@@ -28,9 +28,7 @@ public class AdminView extends JFrame{
     private JPanel coursePage;
     private JPanel studentPage;
     private String[][] courseList;
-    private String[][] courseInformationList;
     private String[][] studentList;
-    private String[][] showedCourseInformationList;
     public AdminView() {
         // 设置窗口标题和关闭操作
         setTitle("管理员界面");
@@ -118,12 +116,7 @@ public class AdminView extends JFrame{
                     JOptionPane.showMessageDialog(null, "课程添加成功");
                     try {
                         courseList = adminService.listAllCourse();
-                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ){
-                            @Override
-                            public boolean isCellEditable(int row, int column) {
-                                return false;
-                            }
-                        });
+                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ));
                     } catch (NoCourseException ec0) {
                         JOptionPane.showMessageDialog(null, "无课程");
                     }
@@ -165,12 +158,7 @@ public class AdminView extends JFrame{
                     JOptionPane.showMessageDialog(null, "课程删除成功");
                     try {
                         courseList = adminService.listAllCourse();
-                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ){
-                            @Override
-                            public boolean isCellEditable(int row, int column) {
-                                return false;
-                            }
-                        });
+                        courseTable.setModel(new DefaultTableModel(courseList,courseColumnNames ));
                     } catch (NoCourseException ec0) {
                         JOptionPane.showMessageDialog(null, "无课程");
                     }
@@ -188,45 +176,46 @@ public class AdminView extends JFrame{
         JLabel courseInformationLabel = new JLabel("请输入课程编号");
         JTextField courseInformationTextField = new JTextField(10);
         JButton courseInformation = new JButton("确认");
-        JLabel showedCourseInformationLabel = new JLabel("已有课程");
         courseInformationPage.add(courseInformationPageNorth,BorderLayout.NORTH);
-        courseInformationPage.add(showedCourseInformationLabel,BorderLayout.CENTER);
+        courseInformationPage.add(nullPanel,BorderLayout.CENTER);
         courseInformationPageNorth.add(courseInformationLabel);
         courseInformationPageNorth.add(courseInformationTextField);
         courseInformationPageNorth.add(courseInformation);
-        final String[] courseInformationColumnNames = {"学号", "姓名"};
-        courseInformationList = new String[0][];
-        showedCourseInformationList = new String[0][];
-        DefaultTableModel courseInformationModel = new DefaultTableModel(showedCourseInformationList, courseInformationColumnNames){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; // 使所有单元格都不可编辑
-            }
-        };
-        JTable courseInformationTable = new JTable(courseInformationModel);
-        JScrollPane courseInformationScrollPane = new JScrollPane(courseInformationTable);
-        courseInformationPage.add(courseInformationScrollPane, BorderLayout.CENTER);
         courseInformation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            try{
-                courseInformationList = adminService.listStudentInCourse(courseInformationTextField.getText());
-            }catch (NoStudentSelect e1) {
-                JOptionPane.showMessageDialog(null,"无学生选课");
-            }
-                showedCourseInformationList = new String[courseInformationList.length][2];
-            for(int i = 0; i < showedCourseInformationList.length; i++){
-                for(int j = 0; j < 2; j++){
-                    showedCourseInformationList[i][j] = courseInformationList[i][j];
+                String[] studentColumnNames = {"学号", "姓名"};
+                String[][] studentInCourse = new String[0][];
+                String informationCourseNumber = courseInformationTextField.getText();
+                try {
+                    studentInCourse = adminService.listStudentInCourse(informationCourseNumber);
+                } catch (NoStudentSelect ex) {
+                    JOptionPane.showMessageDialog(null, "无学生选择课程");
                 }
-            }
-                courseInformationTable.setModel(new DefaultTableModel(showedCourseInformationList,courseInformationColumnNames ){
+                String[][] showedStudentInCourseList = new String[studentList.length][6];
+                for(int i = 0; i < studentInCourse.length; i++){
+                    for(int j = 0; j < 2; j++){
+                        showedStudentInCourseList[i][j] = studentList[i][j];
+                    }
+                }
+
+                DefaultTableModel studentModel = new DefaultTableModel(showedStudentInCourseList, studentColumnNames){
                     @Override
                     public boolean isCellEditable(int row, int column) {
-                        return false;
+                        return false; // 使所有单元格都不可编辑
                     }
-                });
-            }});
+                };
+                JTable studentTable = new JTable(studentModel);
+                JScrollPane studentScrollPane = new JScrollPane(studentTable);
+                JPanel showedStudentInCoursePage = new JPanel();
+                showedStudentInCoursePage.add(studentScrollPane);
+                courseInformationPage.remove(courseInformationPage.getComponent(1));
+                courseInformationPage.add(showedStudentInCoursePage, BorderLayout.CENTER);
+                courseInformationPage.revalidate();
+                courseInformationPage.repaint();
+            }
+        });
+
 
 
         //创建课程功能按钮
@@ -327,12 +316,7 @@ public class AdminView extends JFrame{
                     JOptionPane.showMessageDialog(null, "学生添加成功");
                     try {
                         studentList = adminService.listAllStudent();
-                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ){
-                            @Override
-                            public boolean isCellEditable(int row, int column) {
-                                return false;
-                            }
-                        });
+                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ));
                     }
                     catch (NoStudentException ec10){
                         JOptionPane.showMessageDialog(null, "无学生");
@@ -373,12 +357,7 @@ public class AdminView extends JFrame{
                     JOptionPane.showMessageDialog(null, "学生删除成功");
                     try {
                         studentList = adminService.listAllStudent();
-                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ){
-                            @Override
-                            public boolean isCellEditable(int row, int column) {
-                                return false;
-                            }
-                        });
+                        studentTable.setModel(new DefaultTableModel(studentList,studentColumnNames ));
                     }
                     catch (NoStudentException ec10){
                         JOptionPane.showMessageDialog(null, "无学生");

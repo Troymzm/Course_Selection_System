@@ -1,4 +1,6 @@
+import com.student.view.AdminView;
 import com.student.view.LoginView;
+import com.student.view.StudentView;
 
 import javax.swing.*;
 
