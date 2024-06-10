@@ -56,16 +56,26 @@ public class AdminService {
      * @return 返回选择该课的学生二维字符串数组
      * @throws NoStudentSelect
      */
-    public String[][] listStudentInCourse(String courseNO) throws NoStudentSelect {
+    public String[][] listStudentInCourse(String courseNO) throws NoStudentSelect, NoCourseException {
         String[][] studentInCourse = AdminDAO.getInstance().queryStudentWhoSelectCourse(courseNO);
         String[][] allStudent = AdminDAO.getInstance().listAllStudents();
+        String[][] allCourse = AdminDAO.getInstance().listAllCourses();
+        int i ;
+        for(i = 0;i <allCourse.length;i++){
+            if(allCourse[i][0].equals(courseNO)){
+                break;
+            }
+        }
+        if(i == allCourse.length){
+            throw new NoCourseException();
+        }
         List<String[]> result = new ArrayList<>();
         if(studentInCourse.length == 0){
             throw new NoStudentSelect();
         }
-        for(int i = 0;i < studentInCourse.length;i++){
+        for(int k = 0;k < studentInCourse.length;k++){
             for(int j = 0;j < allStudent.length;j++){
-                if(studentInCourse[i][0].equals(allStudent[j][0])){
+                if(studentInCourse[k][0].equals(allStudent[j][0])){
                     result.add(allStudent[j]);
                     break;
                 }

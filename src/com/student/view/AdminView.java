@@ -213,6 +213,8 @@ public class AdminView extends JFrame{
                     courseInformationList = adminService.listStudentInCourse(courseInformationTextField.getText());
                 }catch (NoStudentSelect e1) {
                     JOptionPane.showMessageDialog(null,"无学生选课");
+                } catch (NoCourseException e2){
+                    JOptionPane.showMessageDialog(null,"无对应课程");
                 }
                 showedCourseInformationList = new String[courseInformationList.length][2];
                 for(int i = 0; i < showedCourseInformationList.length; i++){
