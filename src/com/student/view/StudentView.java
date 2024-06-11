@@ -309,9 +309,9 @@ public class StudentView extends JFrame {
         }
         modifyInfoButton.addActionListener(e -> {
             String newPassword = JOptionPane.showInputDialog(null, "请输入新的密码:");
-            if (newPassword != null && newPassword.length() == 6 && newPassword.matches("[a-zA-Z0-9]+")) {
+            if (newPassword.length() == 6 && newPassword.matches("[a-zA-Z0-9]+")) {
                 String confirmPassword = JOptionPane.showInputDialog(null, "请再次输入新的密码以确认:");
-                if (confirmPassword != null &&confirmPassword.equals(newPassword)) {
+                if (confirmPassword.equals(newPassword)) {
                     try {
                         studentService.updatePassword(studentNO, newPassword);
                         JOptionPane.showMessageDialog(null, "密码修改成功");
